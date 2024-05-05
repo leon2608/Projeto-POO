@@ -1,15 +1,9 @@
-/*
- * Menu.h
- *
- * Created on: April 29, 2024
- *       Author: Leonardo, Vinicius, Luis and Gabriel
- */
-
 #ifndef MENU_H
 #define MENU_H
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -25,7 +19,7 @@ private:
     int width;
     bool zeroForLastOpt;
 
-    const bool isNotAvalidChoice (unsigned long choice) const;
+    const bool isNotAValidChoice (unsigned long choice) const;
     const string replicate(string text, int times) const;
     const string makeDecorator();
 
@@ -42,6 +36,4 @@ public:
     void setZeroForLastOpt(bool zeroForLastOpt = true);
 };
 
-#endif
-
-// Fim do arquivo!
+#endif // MENU_H

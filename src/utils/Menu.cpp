@@ -1,16 +1,6 @@
-/*
- * Menu.cpp
- *
- * Created on: April 29, 2024
- *       Author: Leonardo, Vinicius, Luis and Gabriel
- */
-
-#include <string>
-#include <iostream>
-#include <vector>
-#include <math.h>
-
 #include "Menu.h"
+#include <math.h>
+using namespace std;
 
 Menu::Menu(vector<string> &itens, string title, string message) : title(title), message(message), itens(itens)
 {
@@ -19,17 +9,18 @@ Menu::Menu(vector<string> &itens, string title, string message) : title(title), 
     this->setSymbol();
 };
 
+Menu::~Menu()
+{
+}
+
+
 void Menu::setWidth(int width)
 {
     this->width = width;
 }
 
-Menu::~Menu()
-{
-    // Nothing to do
-}
 
-const bool Menu::isNotAvalidChoice(unsigned long choice) const
+const bool Menu::isNotAValidChoice(unsigned long choice) const
 {
     return ((choice < 0) || (choice > (itens.size() - 1)));
 }
@@ -95,7 +86,7 @@ const int Menu::getChoice()
         }
         cout << message << endl;
         cin >> choice;
-    } while (isNotAvalidChoice(choice));
+    } while (isNotAValidChoice(choice));
     cin.ignore();
 
     return (choice);

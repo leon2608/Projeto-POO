@@ -1,10 +1,3 @@
-/*
- * SysInfo.cpp
- *
- * Created on: April 29, 2024
- *       Author: Leonardo, Vinicius, Luis and Gabriel
- */
-
 #include "SysInfo.h"
 
 const string SysInfo::author = "Grupo X";

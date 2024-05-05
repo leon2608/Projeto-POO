@@ -1,22 +1,12 @@
-/*
- * start.cpp
- *
- * Created on: April 29, 2024
- *       Author: Leonardo, Vinicius, Luis and Gabriel
- */
-
 #include <iostream>
 #include <string>
 #include <vector>
 
 #include "Controller.h"
-#include "Menu.h"
-#include "Menu.cpp"
-#include "Utils.h"
+#include "../utils/Menu.h"
+#include "../utils/Utils.h"
 
-Controller::~Controller()
-{
-    // nothing to do
+Controller::~Controller() {
 }
 
 void Controller::start()
@@ -24,6 +14,11 @@ void Controller::start()
     vector<string> menuItens{"Séries", "Relatórios", "Ajuda", "Créditos", "Sair"};
     vector<void (Controller::*)()> functions{&Controller::actionSelect};
     launchActions("Menu Principal", menuItens, functions);
+}
+
+void Controller::actionSelect()
+{
+    // TODO: Implement actionSelect method
 }
 
 void Controller::launchActions(string title, vector<string> menuItens, vector<void (Controller::*)()> functions)

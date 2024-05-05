@@ -1,13 +1,6 @@
-/*
- * Utils.cpp
- *
- * Created on: April 29, 2024
- *       Author: Leonardo, Vinicius, Luis and Gabriel
- */
-
-#include <iostream>
 #include "Utils.h"
 #include "SysInfo.h"
+#include <iostream>
 
 void Utils::printMessage(string text)
 {
@@ -17,10 +10,8 @@ void Utils::printMessage(string text)
 void Utils::printFramedMessage(string text, string symbol, int length)
 {
     cout << replicate(symbol, length) << endl;
-    ;
     cout << text << endl;
     cout << replicate(symbol, length) << endl;
-    ;
 }
 
 string Utils::replicate(string text, int times)

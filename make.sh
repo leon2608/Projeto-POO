@@ -1,2 +1,2 @@
-g++ -o programa Controller.cpp Menu.cpp SysInfo.cpp Utils.cpp 
+g++ -o programa src/Main.cpp src/controller/Controller.cpp src/utils/Menu.cpp src/utils/SysInfo.cpp src/utils/Utils.cpp 
 ./programa

@@ -1,12 +1,5 @@
-/*
- * Utils.h.cpp
- *
- * Created on: April 29, 2024
- *       Author: Leonardo, Vinicius, Luis and Gabriel
- */
-
-#ifndef UTILS_H_
-#define UTILS_H_
+#ifndef UTILS_H
+#define UTILS_H
 
 #include <string>
 
@@ -20,4 +13,4 @@ public:
     static string replicate(string text, int times);
 };
 
-#endif /* UTILS_H_ */
+#endif // UTILS_H

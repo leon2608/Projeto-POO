@@ -1,16 +1,9 @@
-/*
- * SysInfo.cpp
- *
- * Created on: April 29, 2024
- *       Author: Leonardo, Vinicius, Luis and Gabriel
- */
-
-#ifndef SYSINFO_H_
-#define SYSINFO_H_
-
-using namespace std;
+#ifndef SYSINFO_H
+#define SYSINFO_H
 
 #include <string>
+
+using namespace std;
 
 class SysInfo final
 {
@@ -35,4 +28,4 @@ public:
     static const string getFullVersion();
 };
 
-#endif /* SYSINFO_H_ */
+#endif // SYSINFO_H

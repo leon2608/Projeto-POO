@@ -1,12 +1,5 @@
-/*
- * Menu.cpp
- *
- * Created on: April 29, 2024
- *       Author: Leonardo, Vinicius, Luis and Gabriel
- */
-
-#ifndef CONTROLLER_H_
-#define CONTROLLER_H_
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
 
 #include <string>
 #include <vector>
@@ -25,4 +18,4 @@ public:
     void start();
 };
 
-#endif /* CONTROLLER_H_ */
+#endif // CONTROLLER_H
