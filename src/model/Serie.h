@@ -24,6 +24,7 @@ public:
     virtual ~Serie();
 
     int getInternalId();
+    void setSerieId(int internalId);
     string getSerieName();
     int getReleaseYear();
     int getSeason();

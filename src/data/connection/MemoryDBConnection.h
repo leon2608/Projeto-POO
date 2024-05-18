@@ -15,6 +15,7 @@ public:
     virtual ~MemoryDBConnection();
 
     vector<Serie*>& getSerieList();
+    
     void close();
 };
 

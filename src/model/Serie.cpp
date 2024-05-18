@@ -107,3 +107,8 @@ void Serie::setRating(int rating)
 {
     this->rating = rating;
 }
+
+void Serie::setSerieId(int internalId)
+{
+    this->internalId = internalId;
+}
