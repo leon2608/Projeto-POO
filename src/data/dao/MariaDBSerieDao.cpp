@@ -2,10 +2,10 @@
 
 const string MariaDBSerieDao::SQL_GET_ALL_SERIES = "SELECT * FROM series";
 const string MariaDBSerieDao::SQL_GET_SERIE_BY_ID = "SELECT * FROM series WHERE id = ?";
-const string MariaDBSerieDao::SQL_ADD_SERIE = "INSERT INTO series (name, year, season, episode_count, main_actors, main_characters, network, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+const string MariaDBSerieDao::SQL_ADD_SERIE = "INSERT INTO series (series_name, release_year, season, episode_count, main_actors, main_characters, network, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 const string MariaDBSerieDao::SQL_REMOVE_SERIE = "DELETE FROM series WHERE id = ?";
-const string MariaDBSerieDao::SQL_UPDATE_NAME = "UPDATE series SET name = ? WHERE id = ?";
-const string MariaDBSerieDao::SQL_UPDATE_YEAR = "UPDATE series SET year = ? WHERE id = ?";
+const string MariaDBSerieDao::SQL_UPDATE_NAME = "UPDATE series SET series_name = ? WHERE id = ?";
+const string MariaDBSerieDao::SQL_UPDATE_YEAR = "UPDATE series SET release_year = ? WHERE id = ?";
 const string MariaDBSerieDao::SQL_UPDATE_SEASON = "UPDATE series SET season = ? WHERE id = ?";
 const string MariaDBSerieDao::SQL_UPDATE_EPISODE_COUNT = "UPDATE series SET episode_count = ? WHERE id = ?";
 const string MariaDBSerieDao::SQL_UPDATE_MAIN_ACTORS = "UPDATE series SET main_actors = ? WHERE id = ?";
@@ -36,8 +36,8 @@ vector<Serie *> MariaDBSerieDao::getSerieList()
         {
             Serie *serie = new Serie(
                 resultSet->getInt("id"),
-                resultSet->getString("name").c_str(),
-                resultSet->getInt("year"),
+                resultSet->getString("series_name").c_str(),
+                resultSet->getInt("release_year"),
                 resultSet->getInt("season"),
                 resultSet->getInt("episode_count"),
                 resultSet->getString("main_actors").c_str(),
@@ -70,8 +70,8 @@ Serie *MariaDBSerieDao::getSerieById(int serieId)
         {
             serie = new Serie(
                 resultSet->getInt("id"),
-                resultSet->getString("name").c_str(),
-                resultSet->getInt("year"),
+                resultSet->getString("series_name").c_str(),
+                resultSet->getInt("release_year"),
                 resultSet->getInt("season"),
                 resultSet->getInt("episode_count"),
                 resultSet->getString("main_actors").c_str(),
@@ -154,7 +154,7 @@ void MariaDBSerieDao::updateSerieYear(int serieId, int newYear)
     }
     catch(const sql::SQLException &e)
     {
-        cerr << "Error updating Serie year: " << e.what() << endl;
+        cerr << "Error updating Serie release year: " << e.what() << endl;
     }
 }
 
