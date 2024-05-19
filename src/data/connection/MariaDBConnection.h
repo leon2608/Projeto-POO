@@ -1,8 +1,9 @@
 #ifndef MARIA_DB_CONNECTION_H
 #define MARIA_DB_CONNECTION_H
 
-#include <string>
+// TODO: Fix the path to the MariaDB C++ Connector include file
 #include "C:\Program Files\MariaDB\MariaDB C++ Connector 64-bit\include\conncpp.hpp"
+#include <string>
 
 using namespace std;
 
