@@ -21,24 +21,23 @@ private:
     static const string SQL_UPDATE_RATING;
 
     MariaDBConnection *connection;
-    //TODO: Evaluate wheter is necessary to keep track of the lastEntryId
-    static int lastEntryId;
 
 public:
     MariaDBSerieDao(MariaDBConnection *memoryDBConnection);
     virtual ~MariaDBSerieDao();
-    virtual vector<Serie *> getAllSeries();
+
+    virtual vector<Serie *> getSerieList();
     virtual Serie *getSerieById(int serieId);
-    virtual void add(Serie *serie);
-    virtual void remove(int serieId);
-    virtual void updateName(int serieId, string newName);
-    virtual void updateYear(int serieId, int newYear);
-    virtual void updateSeason(int serieId, int newSeason);
-    virtual void updateEpisodeCount(int serieId, int newEpisodeCount);
-    virtual void updateMainActors(int serieId, string newMainActors);
-    virtual void updateMainCharacters(int serieId, string newMainCharacters);
-    virtual void updateNetwork(int serieId, string newNetwork);
-    virtual void updateRating(int serieId, int newRating);
+    virtual void addSerie(Serie *serie);
+    virtual void removeSerie(int serieId);
+    virtual void updateSerieName(int serieId, string newName);
+    virtual void updateSerieYear(int serieId, int newYear);
+    virtual void updateSerieSeason(int serieId, int newSeason);
+    virtual void updateSerieEpisodeCount(int serieId, int newEpisodeCount);
+    virtual void updateSerieMainActors(int serieId, string newMainActors);
+    virtual void updateSerieMainCharacters(int serieId, string newMainCharacters);
+    virtual void updateSerieNetwork(int serieId, string newNetwork);
+    virtual void updateSerieRating(int serieId, int newRating);
 };
 
 #endif // MARIA_DB_SERIE_DAO_H

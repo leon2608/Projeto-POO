@@ -1,10 +1,6 @@
 #include "MariaDBConnection.h"
 #include <iostream>
 
-// TODO: Add class on compilation script (make.sh)
-// src/data/connection/MariaDBConnection.cpp
-// -I"C:\Program Files\MariaDB\MariaDB C++ Connector 64-bit\include" -L"C:\Program Files\MariaDB\MariaDB C++ Connector 64-bit" -lmariadbcpp
-
 MariaDBConnection::MariaDBConnection() 
 {
     try
@@ -39,3 +35,7 @@ sql::Connection* MariaDBConnection::getConnection() const
 {
     return this->connection;
 }
+
+// TODO: Add class on compilation script (make.sh)
+// Path: src/data/connection/MariaDBConnection.cpp
+// Extra arguments: -I"C:\Program Files\MariaDB\MariaDB C++ Connector 64-bit\include" -L"C:\Program Files\MariaDB\MariaDB C++ Connector 64-bit" -lmariadbcpp

@@ -12,7 +12,7 @@ MemorySerieDao::MemorySerieDao(MemoryDBConnection *connection) : connection(conn
 
 MemorySerieDao::~MemorySerieDao() {}
 
-vector<Serie *> MemorySerieDao::getAllSeries()
+vector<Serie *> MemorySerieDao::getSerieList()
 {
     return (connection->getSerieList());
 }
@@ -36,13 +36,13 @@ Serie *MemorySerieDao::getSerieById(int serieId)
     return (buffer);
 }
 
-void MemorySerieDao::add(Serie *serie)
+void MemorySerieDao::addSerie(Serie *serie)
 {
     serie->setSerieId(++lastEntryId);
     (connection->getSerieList()).push_back(serie);
 }
 
-void MemorySerieDao::remove(int serieId)
+void MemorySerieDao::removeSerie(int serieId)
 {
     vector<Serie *> &series = connection->getSerieList();
     vector<Serie *>::iterator serieIterator = series.begin();
@@ -60,49 +60,49 @@ void MemorySerieDao::remove(int serieId)
     }
 }
 
-void MemorySerieDao::updateName(int serieId, string newName)
+void MemorySerieDao::updateSerieName(int serieId, string newName)
 {
     Serie *serie = getSerieById(serieId);
     serie->setSerieName(newName);
 }
 
-void MemorySerieDao::updateYear(int serieId, int newYear)
+void MemorySerieDao::updateSerieYear(int serieId, int newYear)
 {
     Serie *serie = getSerieById(serieId);
     serie->setReleaseYear(newYear);
 }
 
-void MemorySerieDao::updateSeason(int serieId, int newSeason)
+void MemorySerieDao::updateSerieSeason(int serieId, int newSeason)
 {
     Serie *serie = getSerieById(serieId);
     serie->setSeason(newSeason);
 }
 
-void MemorySerieDao::updateEpisodeCount(int serieId, int newEpisodeCount)
+void MemorySerieDao::updateSerieEpisodeCount(int serieId, int newEpisodeCount)
 {
     Serie *serie = getSerieById(serieId);
     serie->setEpisodeCount(newEpisodeCount);
 }
 
-void MemorySerieDao::updateMainActors(int serieId, string newMainActors)
+void MemorySerieDao::updateSerieMainActors(int serieId, string newMainActors)
 {
     Serie *serie = getSerieById(serieId);
     serie->setMainActors(newMainActors);
 }
 
-void MemorySerieDao::updateMainCharacters(int serieId, string newMainCharacters)
+void MemorySerieDao::updateSerieMainCharacters(int serieId, string newMainCharacters)
 {
     Serie *serie = getSerieById(serieId);
     serie->setMainCharacters(newMainCharacters);
 }
 
-void MemorySerieDao::updateNetwork(int serieId, string newNetwork)
+void MemorySerieDao::updateSerieNetwork(int serieId, string newNetwork)
 {
     Serie *serie = getSerieById(serieId);
     serie->setNetwork(newNetwork);
 }
 
-void MemorySerieDao::updateRating(int serieId, int newRating)
+void MemorySerieDao::updateSerieRating(int serieId, int newRating)
 {
     Serie *serie = getSerieById(serieId);
     serie->setRating(newRating);
