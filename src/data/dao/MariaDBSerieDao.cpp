@@ -59,13 +59,14 @@ vector<Serie *> MariaDBSerieDao::getSerieList()
 
 Serie *MariaDBSerieDao::getSerieById(int serieId)
 {
+    Serie *serie = nullptr;
+
     try
     {
         unique_ptr<sql::PreparedStatement> preparedStatement(this->connection->getConnection()->prepareStatement(SQL_GET_SERIE_BY_ID));
         preparedStatement->setInt(1, serieId);
         unique_ptr<sql::ResultSet> resultSet(preparedStatement->executeQuery());
 
-        Serie *serie = nullptr;
         if (resultSet->next())
         {
             serie = new Serie(
@@ -80,13 +81,13 @@ Serie *MariaDBSerieDao::getSerieById(int serieId)
                 resultSet->getInt("rating")
             );
         }
-
-        return serie;
     }
     catch(const sql::SQLException &e)
     {
         cerr << "Error selecting Series: " << e.what() << endl;
     }
+    
+    return serie;
 }
 
 void MariaDBSerieDao::addSerie(Serie *serie)
@@ -253,6 +254,3 @@ void MariaDBSerieDao::updateSerieRating(int serieId, int newRating)
         cerr << "Error updating Serie rating: " << e.what() << endl;
     }
 }
-
-// TODO: Add class on compilation script (make.sh)
-// Path: src/data/dao/MariaDBSerieDao.cpp

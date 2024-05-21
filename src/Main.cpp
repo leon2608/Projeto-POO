@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
 	try
 	{
-		(make_unique<Controller>())->start();
+		(unique_ptr<Controller>())->start();
 	}
 	catch (const exception &myException)
 	{
