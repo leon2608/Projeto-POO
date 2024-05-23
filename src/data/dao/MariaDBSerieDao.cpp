@@ -21,7 +21,6 @@ MariaDBSerieDao::MariaDBSerieDao(MariaDBConnection *connection)
 
 MariaDBSerieDao::~MariaDBSerieDao()
 {
-    delete this->connection;
 }
 
 vector<Serie *> MariaDBSerieDao::getSerieList() const
