@@ -12,7 +12,8 @@ Controller::Controller()
 {
     memoryDBConnection = new MemoryDBConnection();
     mariaDBConnection = new MariaDBConnection();
-    serieDao = new MemorySerieDao(memoryDBConnection);
+    serieDao = new MemorySerieDao(memoryDBConnection);  
+    serieController = new SerieController(memoryDBConnection, mariaDBConnection, serieDao);
 }
 Controller::~Controller()
 {
@@ -27,12 +28,12 @@ void Controller::start()
 
 void Controller::actionSeries()
 {
-    
+    serieController->launchActionsSerie();
 }
 
 void Controller::actionReports()
 {
-    // TODO: Implement actionReport method
+    serieController->launchActionsReports();
 }
 
 void Controller::actionHelp()
