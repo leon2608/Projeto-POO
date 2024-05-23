@@ -28,7 +28,7 @@ void Controller::start()
 
 void Controller::actionSeries()
 {
-    serieController->launchActionsSerie();
+    serieController->launchActionsSeries();
 }
 
 void Controller::actionReports()
