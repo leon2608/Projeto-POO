@@ -2,23 +2,47 @@
 #include <string>
 #include <vector>
 
+#include "SerieController.h"
 #include "Controller.h"
 #include "../utils/Menu.h"
 #include "../utils/Utils.h"
+#include "../data/dao/MemorySerieDao.h"
 
-Controller::~Controller() {
+Controller::Controller()
+{
+    memoryDBConnection = new MemoryDBConnection();
+    mariaDBConnection = new MariaDBConnection();
+    serieDao = new MemorySerieDao(memoryDBConnection);
+}
+Controller::~Controller()
+{
 }
 
 void Controller::start()
 {
     vector<string> menuItens{"Séries", "Relatórios", "Ajuda", "Créditos", "Sair"};
-    vector<void (Controller::*)()> functions{&Controller::actionSelect};
+    vector<void (Controller::*)()> functions{&Controller::actionSeries, &Controller::actionReports, &Controller::actionHelp, &Controller::actionCredits};
     launchActions("Menu Principal", menuItens, functions);
 }
 
-void Controller::actionSelect()
+void Controller::actionSeries()
 {
-    // TODO: Implement actionSelect method
+    
+}
+
+void Controller::actionReports()
+{
+    // TODO: Implement actionReport method
+}
+
+void Controller::actionHelp()
+{
+    // TODO: Implement actionHelp method
+}
+
+void Controller::actionCredits()
+{
+    // TODO: Implement actionCredits method
 }
 
 void Controller::launchActions(string title, vector<string> menuItens, vector<void (Controller::*)()> functions)
