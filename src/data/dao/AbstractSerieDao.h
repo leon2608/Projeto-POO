@@ -12,10 +12,14 @@ public:
     AbstractSerieDao() {}
     virtual ~AbstractSerieDao() {}
 
-    virtual vector<Serie *> getSerieList() = 0;
-    virtual Serie *getSerieById(int id) = 0;
-    virtual void addSerie(Serie &serie) = 0;
-    virtual void removeSerie(Serie &serie) = 0;
+    virtual vector<Serie *> getSerieList() const = 0;
+    virtual vector<Serie *> getSerieListOrderedByTitle() const = 0;
+    virtual vector<Serie *> getSerieListOrderedByNetwork() const = 0;
+    virtual vector<Serie *> getSerieListOrderedByYear() const = 0;
+    virtual vector<Serie *> getSerieListOrderedByRating() const = 0;
+    virtual Serie *getSerieById(int serieId) const = 0;
+    virtual void addSerie(Serie *serie) = 0;
+    virtual void removeSerie(int serieId) = 0;
     virtual void updateSerieName(int serieId, string newName) = 0;
     virtual void updateSerieYear(int serieId, int newYear) = 0;
     virtual void updateSerieSeason(int serieId, int newSeason) = 0;

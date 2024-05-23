@@ -12,12 +12,44 @@ MemorySerieDao::MemorySerieDao(MemoryDBConnection *connection) : connection(conn
 
 MemorySerieDao::~MemorySerieDao() {}
 
-vector<Serie *> MemorySerieDao::getSerieList()
+vector<Serie *> MemorySerieDao::getSerieList() const
 {
     return (connection->getSerieList());
 }
 
-Serie *MemorySerieDao::getSerieById(int serieId)
+vector<Serie *> MemorySerieDao::getSerieListOrderedByTitle() const
+{
+    vector<Serie *> &series = connection->getSerieList();
+    vector<Serie *> sortedSeries = series;
+    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b) { return a->getSerieName() < b->getSerieName(); });
+    return (sortedSeries);
+}
+
+vector<Serie *> MemorySerieDao::getSerieListOrderedByNetwork() const
+{
+    vector<Serie *> &series = connection->getSerieList();
+    vector<Serie *> sortedSeries = series;
+    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b) { return a->getNetwork() < b->getNetwork(); });
+    return (sortedSeries);
+}
+
+vector<Serie *> MemorySerieDao::getSerieListOrderedByYear() const
+{
+    vector<Serie *> &series = connection->getSerieList();
+    vector<Serie *> sortedSeries = series;
+    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b) { return a->getReleaseYear() < b->getReleaseYear(); });
+    return (sortedSeries);
+}
+
+vector<Serie *> MemorySerieDao::getSerieListOrderedByRating() const
+{
+    vector<Serie *> &series = connection->getSerieList();
+    vector<Serie *> sortedSeries = series;
+    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b) { return a->getRating() < b->getRating(); });
+    return (sortedSeries);
+}
+
+Serie *MemorySerieDao::getSerieById(int serieId) const
 {
     vector<Serie *> &series = connection->getSerieList();
     vector<Serie *>::iterator serieIterator = series.begin();

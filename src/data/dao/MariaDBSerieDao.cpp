@@ -1,6 +1,7 @@
 #include "MariaDBSerieDao.h"
 
-const string MariaDBSerieDao::SQL_GET_ALL_SERIES = "SELECT * FROM series";
+const string MariaDBSerieDao::SQL_GET_SERIE_LIST = "SELECT * FROM series";
+const string MariaDBSerieDao::SQL_GET_SERIE_LIST_ORDERED_BY = "SELECT * FROM series ORDER BY ?";
 const string MariaDBSerieDao::SQL_GET_SERIE_BY_ID = "SELECT * FROM series WHERE id = ?";
 const string MariaDBSerieDao::SQL_ADD_SERIE = "INSERT INTO series (series_name, release_year, season, episode_count, main_actors, main_characters, network, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 const string MariaDBSerieDao::SQL_REMOVE_SERIE = "DELETE FROM series WHERE id = ?";
@@ -23,14 +24,14 @@ MariaDBSerieDao::~MariaDBSerieDao()
     delete this->connection;
 }
 
-vector<Serie *> MariaDBSerieDao::getSerieList()
+vector<Serie *> MariaDBSerieDao::getSerieList() const
 {
     vector<Serie *> series;
 
     try
     {
         unique_ptr<sql::Statement> statement(this->connection->getConnection()->createStatement());
-        unique_ptr<sql::ResultSet> resultSet(statement->executeQuery(SQL_GET_ALL_SERIES));
+        unique_ptr<sql::ResultSet> resultSet(statement->executeQuery(SQL_GET_SERIE_LIST));
 
         while (resultSet->next())
         {
@@ -57,7 +58,147 @@ vector<Serie *> MariaDBSerieDao::getSerieList()
     return series;
 }
 
-Serie *MariaDBSerieDao::getSerieById(int serieId)
+vector<Serie *> MariaDBSerieDao::getSerieListOrderedByTitle() const
+{
+    vector<Serie *> series;
+
+    try
+    {
+        unique_ptr<sql::PreparedStatement> preparedStatement(this->connection->getConnection()->prepareStatement(SQL_GET_SERIE_LIST_ORDERED_BY));
+        preparedStatement->setString(1, "series_name");
+        unique_ptr<sql::ResultSet> resultSet(preparedStatement->executeQuery());
+
+        while (resultSet->next())
+        {
+            Serie *serie = new Serie(
+                resultSet->getInt("id"),
+                resultSet->getString("series_name").c_str(),
+                resultSet->getInt("release_year"),
+                resultSet->getInt("season"),
+                resultSet->getInt("episode_count"),
+                resultSet->getString("main_actors").c_str(),
+                resultSet->getString("main_characters").c_str(),
+                resultSet->getString("network").c_str(),
+                resultSet->getInt("rating")
+            );
+
+            series.push_back(serie);
+        }
+    }
+    catch(const sql::SQLException &e)
+    {
+        cerr << "Error selecting Series: " << e.what() << endl;
+    }
+
+    return series;
+}
+
+vector<Serie *> MariaDBSerieDao::getSerieListOrderedByNetwork() const
+{
+    vector<Serie *> series;
+
+    try
+    {
+        unique_ptr<sql::PreparedStatement> preparedStatement(this->connection->getConnection()->prepareStatement(SQL_GET_SERIE_LIST_ORDERED_BY));
+        preparedStatement->setString(1, "network");
+        unique_ptr<sql::ResultSet> resultSet(preparedStatement->executeQuery());
+
+        while (resultSet->next())
+        {
+            Serie *serie = new Serie(
+                resultSet->getInt("id"),
+                resultSet->getString("series_name").c_str(),
+                resultSet->getInt("release_year"),
+                resultSet->getInt("season"),
+                resultSet->getInt("episode_count"),
+                resultSet->getString("main_actors").c_str(),
+                resultSet->getString("main_characters").c_str(),
+                resultSet->getString("network").c_str(),
+                resultSet->getInt("rating")
+            );
+
+            series.push_back(serie);
+        }
+    }
+    catch(const sql::SQLException &e)
+    {
+        cerr << "Error selecting Series: " << e.what() << endl;
+    }
+
+    return series;
+}
+
+vector<Serie *> MariaDBSerieDao::getSerieListOrderedByYear() const
+{
+    vector<Serie *> series;
+
+    try
+    {
+        unique_ptr<sql::PreparedStatement> preparedStatement(this->connection->getConnection()->prepareStatement(SQL_GET_SERIE_LIST_ORDERED_BY));
+        preparedStatement->setString(1, "release_year");
+        unique_ptr<sql::ResultSet> resultSet(preparedStatement->executeQuery());
+
+        while (resultSet->next())
+        {
+            Serie *serie = new Serie(
+                resultSet->getInt("id"),
+                resultSet->getString("series_name").c_str(),
+                resultSet->getInt("release_year"),
+                resultSet->getInt("season"),
+                resultSet->getInt("episode_count"),
+                resultSet->getString("main_actors").c_str(),
+                resultSet->getString("main_characters").c_str(),
+                resultSet->getString("network").c_str(),
+                resultSet->getInt("rating")
+            );
+
+            series.push_back(serie);
+        }
+    }
+    catch(const sql::SQLException &e)
+    {
+        cerr << "Error selecting Series: " << e.what() << endl;
+    }
+
+    return series;
+}
+
+vector<Serie *> MariaDBSerieDao::getSerieListOrderedByRating() const
+{
+    vector<Serie *> series;
+
+    try
+    {
+        unique_ptr<sql::PreparedStatement> preparedStatement(this->connection->getConnection()->prepareStatement(SQL_GET_SERIE_LIST_ORDERED_BY));
+        preparedStatement->setString(1, "rating");
+        unique_ptr<sql::ResultSet> resultSet(preparedStatement->executeQuery());
+
+        while (resultSet->next())
+        {
+            Serie *serie = new Serie(
+                resultSet->getInt("id"),
+                resultSet->getString("series_name").c_str(),
+                resultSet->getInt("release_year"),
+                resultSet->getInt("season"),
+                resultSet->getInt("episode_count"),
+                resultSet->getString("main_actors").c_str(),
+                resultSet->getString("main_characters").c_str(),
+                resultSet->getString("network").c_str(),
+                resultSet->getInt("rating")
+            );
+
+            series.push_back(serie);
+        }
+    }
+    catch(const sql::SQLException &e)
+    {
+        cerr << "Error selecting Series: " << e.what() << endl;
+    }
+
+    return series;
+}
+
+Serie *MariaDBSerieDao::getSerieById(int serieId) const
 {
     Serie *serie = nullptr;
 
