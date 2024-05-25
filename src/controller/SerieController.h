@@ -29,10 +29,12 @@ private:
     void launchActions(string title, vector<string>, vector<void (SerieController::*)()> functions);
 
 public:
-    SerieController(MemoryDBConnection *memoryDBConnection, MariaDBConnection *mariaDBConnection, AbstractSerieDao *serieDao);
+    SerieController();
     virtual ~SerieController();
     void launchActionsSeries(void);
     void launchActionsReports(void);
+
+    Serie* addRegister();
 };
 
 #endif // SERIE_CONTROLLER_H

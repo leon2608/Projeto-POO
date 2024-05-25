@@ -21,7 +21,8 @@ vector<Serie *> MemorySerieDao::getSerieListOrderedByTitle() const
 {
     vector<Serie *> &series = connection->getSerieList();
     vector<Serie *> sortedSeries = series;
-    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b) { return a->getSerieName() < b->getSerieName(); });
+    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b)
+         { return a->getSerieName() < b->getSerieName(); });
     return (sortedSeries);
 }
 
@@ -29,7 +30,8 @@ vector<Serie *> MemorySerieDao::getSerieListOrderedByNetwork() const
 {
     vector<Serie *> &series = connection->getSerieList();
     vector<Serie *> sortedSeries = series;
-    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b) { return a->getNetwork() < b->getNetwork(); });
+    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b)
+         { return a->getNetwork() < b->getNetwork(); });
     return (sortedSeries);
 }
 
@@ -37,7 +39,8 @@ vector<Serie *> MemorySerieDao::getSerieListOrderedByYear() const
 {
     vector<Serie *> &series = connection->getSerieList();
     vector<Serie *> sortedSeries = series;
-    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b) { return a->getReleaseYear() < b->getReleaseYear(); });
+    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b)
+         { return a->getReleaseYear() < b->getReleaseYear(); });
     return (sortedSeries);
 }
 
@@ -45,7 +48,8 @@ vector<Serie *> MemorySerieDao::getSerieListOrderedByRating() const
 {
     vector<Serie *> &series = connection->getSerieList();
     vector<Serie *> sortedSeries = series;
-    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b) { return a->getRating() < b->getRating(); });
+    sort(sortedSeries.begin(), sortedSeries.end(), [](Serie *a, Serie *b)
+         { return a->getRating() < b->getRating(); });
     return (sortedSeries);
 }
 

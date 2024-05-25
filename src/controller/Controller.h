@@ -13,9 +13,6 @@ using namespace std;
 class Controller
 {
 private:
-    MemoryDBConnection *memoryDBConnection;
-    MariaDBConnection *mariaDBConnection;
-    AbstractSerieDao *serieDao;
     SerieController *serieController;
 
     void actionSeries();
