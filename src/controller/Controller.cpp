@@ -14,6 +14,7 @@ Controller::Controller()
     mariaDBConnection = new MariaDBConnection();
     serieDao = new MemorySerieDao(memoryDBConnection);  
     serieController = new SerieController(memoryDBConnection, mariaDBConnection, serieDao);
+    utils = new Utils();
 }
 Controller::~Controller()
 {
@@ -28,6 +29,7 @@ void Controller::start()
 
 void Controller::actionSeries()
 {
+    utils->clearScreen();
     serieController->launchActionsSeries();
 }
 

@@ -7,6 +7,7 @@
 #include "SerieController.h"
 #include "../data/dao/MemorySerieDao.h"
 #include "../data/dao/MariaDBSerieDao.h"
+#include "../utils/Utils.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ private:
     MariaDBConnection *mariaDBConnection;
     AbstractSerieDao *serieDao;
     SerieController *serieController;
+    Utils *utils;
 
     void actionSeries();
     void actionReports();
