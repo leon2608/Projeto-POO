@@ -6,6 +6,7 @@
 
 #include "../data/dao/MemorySerieDao.h"
 #include "../data/dao/MariaDBSerieDao.h"
+#include "../utils/Utils.h"
 
 using namespace std;
 
@@ -15,11 +16,13 @@ private:
     MemoryDBConnection *memoryDBConnection;
     MariaDBConnection *mariaDBConnection;
     AbstractSerieDao *serieDao;
+    Utils *utils;
 
     void actionSeriesAddRegister(void);
     void actionSeriesRestoreRegister(void);
     void actionSeriesEditRegister(void);
     void actionSeriesRemoveRegister(void);
+    void actionShowRegister(void);
 
     void actionReportsOrderByTitle(void);
     void actionReportsOrderByNetwork(void);

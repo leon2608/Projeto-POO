@@ -8,14 +8,15 @@
 #include "../utils/Utils.h"
 #include "../data/dao/MemorySerieDao.h"
 
+
 Controller::Controller()
 {
-    memoryDBConnection = new MemoryDBConnection();
-    mariaDBConnection = new MariaDBConnection();
-    serieDao = new MemorySerieDao(memoryDBConnection);  
-    serieController = new SerieController(memoryDBConnection, mariaDBConnection, serieDao);
-    utils = new Utils();
+    // this->mariaDBConnection = mariaDBConnection
+    this->memoryDBConnection = memoryDBConnection;
+    this->serieDao = serieDao;
     this->serieController = new SerieController();
+    this->utils = new Utils();
+    
 }
 Controller::~Controller()
 {

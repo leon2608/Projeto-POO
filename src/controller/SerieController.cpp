@@ -14,6 +14,7 @@ SerieController::SerieController()
     // this->mariaDBConnection = new MariaDBConnection();
     this->memoryDBConnection = new MemoryDBConnection();
     this->serieDao = new MemorySerieDao(memoryDBConnection);
+    this->utils = new Utils();
 }
 
 SerieController::~SerieController()
@@ -38,10 +39,10 @@ void SerieController::actionSeriesAddRegister()
 
     if (!(newSerie->getSerieName()).empty())
     {
-
+        utils->clearScreen();
         this->serieDao->addSerie(newSerie);
-
-        // TODO: mostrar serie cadastradas
+        cout << "Série cadastrada com sucesso!!" << endl;
+        registro.actionShowRegister();
     }
     else
     {
@@ -58,6 +59,10 @@ void SerieController::actionSeriesEditRegister()
 }
 
 void SerieController::actionSeriesRemoveRegister()
+{
+}
+
+void SerieController::actionShowRegister(void)
 {
 }
 
@@ -107,35 +112,36 @@ Serie *SerieController::addRegister()
     string network;
     int rating;
 
+    utils->clearScreen();
     cout << "Inclusão de uma nova série:" << endl;
     cout << "Digite o nome da série:" << endl;
     getline(cin, serieName);
-    // clearScreen();
+    utils->clearScreen();
     cout << "Digite o ano de lançamento da série:" << endl;
     cin >> releaseYear;
     cin.ignore();
-    // clearScreen();
+    utils->clearScreen();
     cout << "Digite o número de temporadas da série:" << endl;
     cin >> season;
     cin.ignore();
-    // clearScreen();
+    utils->clearScreen();
     cout << "Digite o número de episódios da série:" << endl;
     cin >> episodeCount;
     cin.ignore();
-    // clearScreen();
+    utils->clearScreen();
     cout << "Digite os atores principais da série:" << endl;
     getline(cin, mainActors);
-    // clearScreen();
+    utils->clearScreen();
     cout << "Digite os personagens principais da série:" << endl;
     getline(cin, mainCharacters);
-    // clearScreen();
+    utils->clearScreen();
     cout << "Digite a rede da série:" << endl;
     getline(cin, network);
-    // clearScreen();
+    utils->clearScreen();
     cout << "Digite a avaliação da série:" << endl;
     cin >> rating;
     cin.ignore();
-    // clearScreen();
+    utils->clearScreen();
 
     return new Serie(lastSerieId, serieName, releaseYear, season, episodeCount, mainActors, mainCharacters, network, rating);
 }
