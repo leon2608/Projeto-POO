@@ -10,6 +10,11 @@
 
 Controller::Controller()
 {
+    memoryDBConnection = new MemoryDBConnection();
+    mariaDBConnection = new MariaDBConnection();
+    serieDao = new MemorySerieDao(memoryDBConnection);  
+    serieController = new SerieController(memoryDBConnection, mariaDBConnection, serieDao);
+    utils = new Utils();
     this->serieController = new SerieController();
 }
 Controller::~Controller()
@@ -25,6 +30,8 @@ void Controller::start()
 
 void Controller::actionSeries()
 {
+    utils->clearScreen();
+    serieController->launchActionsSeries();
     this->serieController->launchActionsSeries();
 }
 

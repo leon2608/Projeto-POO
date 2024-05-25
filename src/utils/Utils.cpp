@@ -2,6 +2,14 @@
 #include "SysInfo.h"
 #include <iostream>
 
+Utils::Utils()
+{
+}
+
+Utils::~Utils()
+{
+}
+
 void Utils::printMessage(string text)
 {
     cout << "* " << SysInfo::getSystemName() << " message: " << text << endl;
@@ -23,3 +31,8 @@ string Utils::replicate(string text, int times)
     }
     return (buffer);
 }
+
+ void Utils::clearScreen()
+	{
+	system("clear||cls");
+	}
