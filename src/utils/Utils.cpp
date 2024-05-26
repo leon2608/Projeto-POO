@@ -32,7 +32,18 @@ string Utils::replicate(string text, int times)
     return (buffer);
 }
 
- void Utils::clearScreen()
-	{
-	system("clear||cls");
-	}
+void Utils::clearScreen()
+{
+    system("clear||cls");
+}
+
+void Utils::systemPause()
+{
+#ifdef _WIN32
+    system("pause");
+#else
+    cout << "Pressione Enter para continuar...";
+    cin.ignore();
+    cin.get();
+#endif
+}
