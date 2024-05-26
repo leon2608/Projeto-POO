@@ -14,6 +14,7 @@ public:
     static void printFramedMessage(string text, string symbol, int length);
     static string replicate(string text, int times);
     static void clearScreen();
+    static void pause();
 };
 
 #endif // UTILS_H

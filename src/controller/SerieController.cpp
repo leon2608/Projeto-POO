@@ -56,8 +56,7 @@ void SerieController::actionSeriesAddRegister()
         this->serieDao->addSerie(newSerie);
         cout << "Série cadastrada com sucesso!!" << endl;
         cout << *newSerie;
-        cout <<"Digite 'Enter' para continuar..." << endl;
-        getchar();
+        utils->pause();
         utils->clearScreen();
     }
     else

@@ -36,3 +36,9 @@ string Utils::replicate(string text, int times)
 	{
 	system("clear||cls");
 	}
+
+void Utils::pause()
+{
+    cout <<"Digite 'Enter' para continuar..." << endl;
+    getchar();
+}
