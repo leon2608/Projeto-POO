@@ -42,6 +42,8 @@ public:
     void setMainCharacters(string mainCharacters);
     void setNetwork(string network);
     void setRating(int rating);
+
+    friend ostream& operator<<(std::ostream& os, const Serie& serie);
 };
 
 #endif // SERIE_H

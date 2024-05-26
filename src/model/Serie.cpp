@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <algorithm>
 
 #include "Serie.h"
 
@@ -111,4 +113,37 @@ void Serie::setRating(int rating)
 void Serie::setSerieId(int internalId)
 {
     this->internalId = internalId;
+}
+
+ostream& operator<<(std::ostream& os, const Serie& serie) 
+{
+    int width_SerieName = serie.serieName.length();
+    int width_MainActors = serie.mainActors.length();
+    int width_MainCharacters = serie.mainCharacters.length();
+    int width_Network = serie.network.length();
+
+    int width_left = 23;
+    int width_right = max({width_SerieName, width_MainActors, width_MainCharacters, width_Network});
+    int width_overall = width_right + width_left;
+
+    if (width_overall < serie.serieName.length())  
+    {
+        width_left += (serie.serieName.length() - width_overall) + 2;
+        width_overall = serie.serieName.length();
+    }
+
+    os << "+" << string((width_overall + 2), '-') << "+" << endl;
+    os << "| " << left << setw(width_overall) << serie.serieName << " |" << endl;
+    os << "+" << string((width_overall + 2), '-') << "+" << endl;
+    os << "| " << left << setw(width_left) << "ID interno: "              << right << setw(width_right) << serie.internalId     << " |" << endl;
+    os << "| " << left << setw(width_left) << "Ano de lancamento: "       << right << setw(width_right) << serie.releaseYear    << " |" << endl;
+    os << "| " << left << setw(width_left) << "Temporadas: "              << right << setw(width_right) << serie.season         << " |" << endl;
+    os << "| " << left << setw(width_left) << "Numero de episodios: "     << right << setw(width_right) << serie.episodeCount   << " |" << endl;
+    os << "| " << left << setw(width_left) << "Ator/Atriz principal: "    << right << setw(width_right) << serie.mainActors     << " |" << endl;
+    os << "| " << left << setw(width_left) << "Personagem principal: "    << right << setw(width_right) << serie.mainCharacters << " |" << endl;
+    os << "| " << left << setw(width_left) << "Canal/Streaming: "         << right << setw(width_right) << serie.network        << " |" << endl;
+    os << "| " << left << setw(width_left) << "Nota de classificacao: "   << right << setw(width_right) << serie.rating         << " |" << endl;
+    os << "+" << string((width_overall + 2), '-') << "+" << endl;
+
+    return os;
 }
