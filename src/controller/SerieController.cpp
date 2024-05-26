@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cstdlib>
+#include <algorithm>
+#include <initializer_list>
+#include <iomanip>
 
 #include "../model/Serie.h"
 #include "../data/dao/MemorySerieDao.h"
@@ -53,7 +55,9 @@ void SerieController::actionSeriesAddRegister()
         utils->clearScreen();
         this->serieDao->addSerie(newSerie);
         cout << "Série cadastrada com sucesso!!" << endl;
-        registro.actionShowRegister();
+        cout << *newSerie;
+        utils->systemPause();
+        utils->clearScreen();
     }
     else
     {
@@ -73,7 +77,7 @@ void SerieController::actionSeriesRestoreRegister()
     if (serie != nullptr)
     {
         utils->clearScreen();
-        registro.actionShowRegister();
+        cout << *serie;
         utils->systemPause();
         utils->clearScreen();
     }
@@ -91,10 +95,6 @@ void SerieController::actionSeriesEditRegister()
 }
 
 void SerieController::actionSeriesRemoveRegister()
-{
-}
-
-void SerieController::actionShowRegister(void)
 {
 }
 
