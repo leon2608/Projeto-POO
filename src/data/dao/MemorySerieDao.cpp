@@ -4,7 +4,7 @@
 #include "../connection/MemoryDBConnection.h"
 #include "../../model/Serie.h"
 
-int MemorySerieDao::lastEntryId = 0;
+int MemorySerieDao::lastSerieId = 0;
 
 MemorySerieDao::MemorySerieDao(MemoryDBConnection *connection) : connection(connection)
 {
@@ -74,7 +74,7 @@ Serie *MemorySerieDao::getSerieById(int serieId) const
 
 void MemorySerieDao::addSerie(Serie *serie)
 {
-    serie->setSerieId(++lastEntryId);
+    serie->setSerieId(++lastSerieId);
     (connection->getSerieList()).push_back(serie);
 }
 
