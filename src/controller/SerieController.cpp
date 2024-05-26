@@ -15,6 +15,16 @@ SerieController::SerieController()
     this->memoryDBConnection = new MemoryDBConnection();
     this->serieDao = new MemorySerieDao(memoryDBConnection);
     this->utils = new Utils();
+
+    serieDao->addSerie(new Serie(1, "Mystic Falls", 2021, 3, 30, "Jane Doe, John Smith", "Alice, Bob", "ABC", 8));
+    serieDao->addSerie(new Serie(2, "Galactic Wars", 2020, 2, 24, "Emily Clark, George Doe", "Captain Rex, Zara", "Netflix", 7));
+    serieDao->addSerie(new Serie(3, "Time Travelers", 2019, 4, 40, "Sarah Brown, Michael White", "Liam, Emma", "HBO", 9));
+    serieDao->addSerie(new Serie(4, "Haunted Manor", 2022, 1, 10, "Anna Black, Chris Green", "Nina, Jack", "AMC", 6));
+    serieDao->addSerie(new Serie(5, "Cyber City", 2023, 2, 20, "David Miller, Laura Wilson", "Max, Lucy", "Amazon Prime", 8));
+    serieDao->addSerie(new Serie(6, "Royalty", 2021, 5, 50, "Olivia Jones, Robert Brown", "Queen Elizabeth, Prince Arthur", "BBC", 7));
+    serieDao->addSerie(new Serie(7, "Wild West", 2020, 3, 30, "William Taylor, Emma Stone", "Sheriff Bob, Annie", "Hulu", 8));
+    serieDao->addSerie(new Serie(8, "Future Tech", 2018, 4, 35, "Sophia Lee, Ryan Harris", "Dr. X, Agent Y", "CBS", 9));
+    serieDao->addSerie(new Serie(9, "Island Mystery", 2022, 1, 12, "Jessica Davis, Mark Robinson", "Hannah, Tom", "NBC", 6));
 }
 
 SerieController::~SerieController()

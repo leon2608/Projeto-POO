@@ -8,7 +8,7 @@ class MemorySerieDao : public AbstractSerieDao
 {
 private:
     MemoryDBConnection *connection;
-    static int lastEntryId;
+    static int lastSerieId;
 
 public:
     MemorySerieDao(MemoryDBConnection *memoryDBConnection);
