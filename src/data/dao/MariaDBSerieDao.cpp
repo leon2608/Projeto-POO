@@ -1,18 +1,18 @@
 #include "MariaDBSerieDao.h"
 
-const string MariaDBSerieDao::SQL_GET_SERIE_LIST = "SELECT * FROM series";
-const string MariaDBSerieDao::SQL_GET_SERIE_LIST_ORDERED_BY = "SELECT * FROM series ORDER BY ?";
-const string MariaDBSerieDao::SQL_GET_SERIE_BY_ID = "SELECT * FROM series WHERE id = ?";
-const string MariaDBSerieDao::SQL_ADD_SERIE = "INSERT INTO series (series_name, release_year, season, episode_count, main_actors, main_characters, network, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-const string MariaDBSerieDao::SQL_REMOVE_SERIE = "DELETE FROM series WHERE id = ?";
-const string MariaDBSerieDao::SQL_UPDATE_NAME = "UPDATE series SET series_name = ? WHERE id = ?";
-const string MariaDBSerieDao::SQL_UPDATE_YEAR = "UPDATE series SET release_year = ? WHERE id = ?";
-const string MariaDBSerieDao::SQL_UPDATE_SEASON = "UPDATE series SET season = ? WHERE id = ?";
-const string MariaDBSerieDao::SQL_UPDATE_EPISODE_COUNT = "UPDATE series SET episode_count = ? WHERE id = ?";
-const string MariaDBSerieDao::SQL_UPDATE_MAIN_ACTORS = "UPDATE series SET main_actors = ? WHERE id = ?";
-const string MariaDBSerieDao::SQL_UPDATE_MAIN_CHARACTERS = "UPDATE series SET main_characters = ? WHERE id = ?";
-const string MariaDBSerieDao::SQL_UPDATE_NETWORK = "UPDATE series SET network = ? WHERE id = ?";
-const string MariaDBSerieDao::SQL_UPDATE_RATING = "UPDATE series SET rating = ? WHERE id = ?";
+const string MariaDBSerieDao::SQL_GET_SERIE_LIST = "SELECT * FROM SERIES";
+const string MariaDBSerieDao::SQL_GET_SERIE_LIST_ORDERED_BY = "SELECT * FROM SERIES ORDER BY ?";
+const string MariaDBSerieDao::SQL_GET_SERIE_BY_ID = "SELECT * FROM SERIES WHERE internal_id = ?";
+const string MariaDBSerieDao::SQL_ADD_SERIE = "INSERT INTO SERIES (series_name, release_year, season, episode_count, main_actors, main_characters, network, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+const string MariaDBSerieDao::SQL_REMOVE_SERIE = "DELETE FROM SERIES WHERE internal_id = ?";
+const string MariaDBSerieDao::SQL_UPDATE_NAME = "UPDATE SERIES SET series_name = ? WHERE internal_id = ?";
+const string MariaDBSerieDao::SQL_UPDATE_YEAR = "UPDATE SERIES SET release_year = ? WHERE internal_id = ?";
+const string MariaDBSerieDao::SQL_UPDATE_SEASON = "UPDATE SERIES SET season = ? WHERE internal_id = ?";
+const string MariaDBSerieDao::SQL_UPDATE_EPISODE_COUNT = "UPDATE SERIES SET episode_count = ? WHERE internal_id = ?";
+const string MariaDBSerieDao::SQL_UPDATE_MAIN_ACTORS = "UPDATE SERIES SET main_actors = ? WHERE internal_id = ?";
+const string MariaDBSerieDao::SQL_UPDATE_MAIN_CHARACTERS = "UPDATE SERIES SET main_characters = ? WHERE internal_id = ?";
+const string MariaDBSerieDao::SQL_UPDATE_NETWORK = "UPDATE SERIES SET network = ? WHERE internal_id = ?";
+const string MariaDBSerieDao::SQL_UPDATE_RATING = "UPDATE SERIES SET rating = ? WHERE internal_id = ?";
 
 MariaDBSerieDao::MariaDBSerieDao(MariaDBConnection *connection)
 {
@@ -35,7 +35,7 @@ vector<Serie *> MariaDBSerieDao::getSerieList() const
         while (resultSet->next())
         {
             Serie *serie = new Serie(
-                resultSet->getInt("id"),
+                resultSet->getInt("internal_id"),
                 resultSet->getString("series_name").c_str(),
                 resultSet->getInt("release_year"),
                 resultSet->getInt("season"),
@@ -70,7 +70,7 @@ vector<Serie *> MariaDBSerieDao::getSerieListOrderedByTitle() const
         while (resultSet->next())
         {
             Serie *serie = new Serie(
-                resultSet->getInt("id"),
+                resultSet->getInt("internal_id"),
                 resultSet->getString("series_name").c_str(),
                 resultSet->getInt("release_year"),
                 resultSet->getInt("season"),
@@ -105,7 +105,7 @@ vector<Serie *> MariaDBSerieDao::getSerieListOrderedByNetwork() const
         while (resultSet->next())
         {
             Serie *serie = new Serie(
-                resultSet->getInt("id"),
+                resultSet->getInt("internal_id"),
                 resultSet->getString("series_name").c_str(),
                 resultSet->getInt("release_year"),
                 resultSet->getInt("season"),
@@ -140,7 +140,7 @@ vector<Serie *> MariaDBSerieDao::getSerieListOrderedByYear() const
         while (resultSet->next())
         {
             Serie *serie = new Serie(
-                resultSet->getInt("id"),
+                resultSet->getInt("internal_id"),
                 resultSet->getString("series_name").c_str(),
                 resultSet->getInt("release_year"),
                 resultSet->getInt("season"),
@@ -175,7 +175,7 @@ vector<Serie *> MariaDBSerieDao::getSerieListOrderedByRating() const
         while (resultSet->next())
         {
             Serie *serie = new Serie(
-                resultSet->getInt("id"),
+                resultSet->getInt("internal_id"),
                 resultSet->getString("series_name").c_str(),
                 resultSet->getInt("release_year"),
                 resultSet->getInt("season"),
@@ -210,7 +210,7 @@ Serie *MariaDBSerieDao::getSerieById(int serieId) const
         if (resultSet->next())
         {
             serie = new Serie(
-                resultSet->getInt("id"),
+                resultSet->getInt("internal_id"),
                 resultSet->getString("series_name").c_str(),
                 resultSet->getInt("release_year"),
                 resultSet->getInt("season"),
