@@ -172,7 +172,6 @@ Serie *SerieController::addRegister()
     utils->clearScreen();
     cout << "Digite a avaliação da série:" << endl;
     cin >> rating;
-    cin.ignore();
     utils->clearScreen();
 
     return new Serie(lastSerieId, serieName, releaseYear, season, episodeCount, mainActors, mainCharacters, network, rating);

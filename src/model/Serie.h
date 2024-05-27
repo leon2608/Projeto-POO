@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -44,6 +45,9 @@ public:
     void setRating(int rating);
 
     friend ostream& operator<<(std::ostream& os, const Serie& serie);
+    
+    friend ostream& operator<<(std::ostream& os, const vector<Serie*>& series);
+
 };
 
 #endif // SERIE_H
