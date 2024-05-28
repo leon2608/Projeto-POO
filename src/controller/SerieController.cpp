@@ -9,15 +9,17 @@
 #include "../data/dao/MemorySerieDao.h"
 #include "../data/dao/AbstractSerieDao.h"
 #include "SerieController.h"
+#include "../data/dao/MariaDBSerieDao.h"
 #include "../utils/Menu.h"
 #include "../utils/Utils.h"
 
 SerieController::SerieController()
 {
-    // this->mariaDBConnection = new MariaDBConnection();
+    this->mariaDBConnection = new MariaDBConnection();
     this->memoryDBConnection = new MemoryDBConnection();
     this->serieDao = new MemorySerieDao(memoryDBConnection);
     this->utils = new Utils();
+    this->serieDao = new MariaDBSerieDao(mariaDBConnection);
 
     serieDao->addSerie(new Serie(1, "Mystic Falls", 2021, 3, 30, "Jane Doe, John Smith", "Alice, Bob", "ABC", 8));
     serieDao->addSerie(new Serie(2, "Galactic Wars", 2020, 2, 24, "Emily Clark, George Doe", "Captain Rex, Zara", "Netflix", 7));
@@ -43,6 +45,9 @@ void SerieController::launchActionsSeries(void)
 
 void SerieController::launchActionsReports(void)
 {
+   vector<string> menuItens{"Ordenar a partir do Título", "Ordenar a partir do Network", "Ordenar a partir do Ano de Lançamento", "Ordenar a partir da Nota", "Sair"};
+    vector<void (SerieController::*)()> functions{&SerieController::actionReportsOrderByTitle, &SerieController::actionReportsOrderByNetwork, &SerieController::actionReportsOrderByYear, &SerieController::actionReportsOrderByRating};
+    launchActions("Menu Relatorios", menuItens, functions); 
 }
 
 void SerieController::actionSeriesAddRegister()
