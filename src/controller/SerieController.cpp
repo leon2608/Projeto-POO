@@ -40,7 +40,7 @@ void SerieController::launchActionsSeries(void)
 {
     vector<string> menuItens{"Adicionar Registro", "Restaurar registro", "Editar Registro", "Remover Registro", "Sair"};
     vector<void (SerieController::*)()> functions{&SerieController::actionSeriesAddRegister, &SerieController::actionSeriesRestoreRegister, &SerieController::actionSeriesEditRegister, &SerieController::actionSeriesRemoveRegister};
-    launchActions("Menu Principal", menuItens, functions);
+    launchActions("Menu Registro", menuItens, functions);
 }
 
 void SerieController::launchActionsReports(void)
@@ -177,7 +177,6 @@ Serie *SerieController::addRegister()
     utils->clearScreen();
     cout << "Digite a avaliação da série:" << endl;
     cin >> rating;
-    cin.ignore();
     utils->clearScreen();
 
     return new Serie(lastSerieId, serieName, releaseYear, season, episodeCount, mainActors, mainCharacters, network, rating);

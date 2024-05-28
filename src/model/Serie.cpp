@@ -117,33 +117,129 @@ void Serie::setSerieId(int internalId)
 
 ostream& operator<<(std::ostream& os, const Serie& serie) 
 {
-    int width_SerieName = serie.serieName.length();
-    int width_MainActors = serie.mainActors.length();
-    int width_MainCharacters = serie.mainCharacters.length();
-    int width_Network = serie.network.length();
+    int widthSerieName = serie.serieName.length();
+    int widthMainActors = serie.mainActors.length();
+    int widthMainCharacters = serie.mainCharacters.length();
+    int widthNetwork = serie.network.length();
 
-    int width_left = 23;
-    int width_right = max({width_SerieName, width_MainActors, width_MainCharacters, width_Network});
-    int width_overall = width_right + width_left;
+    int widthInternalId = to_string(serie.internalId).length();
+    int widthReleaseYear = to_string(serie.releaseYear).length();
+    int widthSeason = to_string(serie.season).length();
+    int widthEpisodeCount = to_string(serie.episodeCount).length();
+    int widthRating = to_string(serie.rating).length();
 
-    if (width_overall < serie.serieName.length())  
+    int widthRight = max({widthMainActors, widthMainCharacters, widthNetwork,
+                           widthInternalId, widthReleaseYear, widthSeason, widthEpisodeCount, widthRating});
+    int widthLeft = 23;
+    int widthOverall = widthRight + widthLeft;
+
+    if (widthOverall < serie.serieName.length())  
     {
-        width_left += (serie.serieName.length() - width_overall) + 2;
-        width_overall = serie.serieName.length();
+        widthRight += (serie.serieName.length() - widthOverall);
+        widthOverall = serie.serieName.length();
     }
 
-    os << "+" << string((width_overall + 2), '-') << "+" << endl;
-    os << "| " << left << setw(width_overall) << serie.serieName << " |" << endl;
-    os << "+" << string((width_overall + 2), '-') << "+" << endl;
-    os << "| " << left << setw(width_left) << "ID interno: "              << right << setw(width_right) << serie.internalId     << " |" << endl;
-    os << "| " << left << setw(width_left) << "Ano de lancamento: "       << right << setw(width_right) << serie.releaseYear    << " |" << endl;
-    os << "| " << left << setw(width_left) << "Temporadas: "              << right << setw(width_right) << serie.season         << " |" << endl;
-    os << "| " << left << setw(width_left) << "Numero de episodios: "     << right << setw(width_right) << serie.episodeCount   << " |" << endl;
-    os << "| " << left << setw(width_left) << "Ator/Atriz principal: "    << right << setw(width_right) << serie.mainActors     << " |" << endl;
-    os << "| " << left << setw(width_left) << "Personagem principal: "    << right << setw(width_right) << serie.mainCharacters << " |" << endl;
-    os << "| " << left << setw(width_left) << "Canal/Streaming: "         << right << setw(width_right) << serie.network        << " |" << endl;
-    os << "| " << left << setw(width_left) << "Nota de classificacao: "   << right << setw(width_right) << serie.rating         << " |" << endl;
-    os << "+" << string((width_overall + 2), '-') << "+" << endl;
+    os << "+" << string((widthOverall + 2), '-') << "+" << endl;
+    os << "| " << left << setw(widthOverall) << serie.serieName << " |" << endl;
+    os << "+" << string((widthOverall + 2), '-') << "+" << endl;
+    os << "| " << left << setw(widthLeft) << "ID interno: "              << right << setw(widthRight) << serie.internalId     << " |" << endl;
+    os << "| " << left << setw(widthLeft) << "Ano de lancamento: "       << right << setw(widthRight) << serie.releaseYear    << " |" << endl;
+    os << "| " << left << setw(widthLeft) << "Temporadas: "              << right << setw(widthRight) << serie.season         << " |" << endl;
+    os << "| " << left << setw(widthLeft) << "Numero de episodios: "     << right << setw(widthRight) << serie.episodeCount   << " |" << endl;
+    os << "| " << left << setw(widthLeft) << "Ator/Atriz principal: "    << right << setw(widthRight) << serie.mainActors     << " |" << endl;
+    os << "| " << left << setw(widthLeft) << "Personagem principal: "    << right << setw(widthRight) << serie.mainCharacters << " |" << endl;
+    os << "| " << left << setw(widthLeft) << "Canal/Streaming: "         << right << setw(widthRight) << serie.network        << " |" << endl;
+    os << "| " << left << setw(widthLeft) << "Nota de classificacao: "   << right << setw(widthRight) << serie.rating         << " |" << endl;
+    os << "+" << string((widthOverall + 2), '-') << "+" << endl;
+
+    return os;
+}
+
+ostream& operator<<(ostream& os, const vector<Serie*>& series)
+{
+    int widthInternalId = 10;
+    int widthSerieName = 9;
+    int widthReleaseYear = 11;
+    int widthSeason = 6;
+    int widthEpisodeCount = 12;
+    int widthMainActors = 10;
+    int widthMainCharacters = 14; 
+    int widthNetwork = 7;
+    int widthRating = 6;
+    
+    int i;
+    size_t total = series.size();
+
+    for (const Serie* serie : series) 
+    {
+    if(widthInternalId < to_string(serie->internalId).length())
+        widthInternalId = to_string(serie->internalId).length();
+
+    if(widthSerieName < serie->serieName.length())
+        widthSerieName = serie->serieName.length();
+
+    if(widthReleaseYear < to_string(serie->releaseYear).length())
+        widthReleaseYear = to_string(serie->releaseYear).length();
+
+    if(widthSeason < to_string(serie->season).length())
+        widthSeason = to_string(serie->season).length();
+
+    if(widthEpisodeCount < to_string(serie->episodeCount).length())
+        widthEpisodeCount = to_string(serie->episodeCount).length();
+    
+    if(widthMainActors < (serie->mainActors).length())
+        widthMainActors = (serie->mainActors).length();
+    
+    if(widthMainCharacters < (serie->mainCharacters).length())
+        widthMainCharacters = (serie->mainCharacters).length();
+    
+    if(widthNetwork < (serie->network).length())
+        widthNetwork = (serie->network).length();
+
+    if(widthRating < to_string(serie->rating).length())
+        widthRating = to_string(serie->rating).length();
+    }
+
+    os  << "+" << string((widthInternalId+2), '-') << "+" << string((widthSerieName+2), '-')
+        << "+" << string((widthReleaseYear+2), '-') << "+" << string((widthSeason+2), '-')
+        << "+" << string((widthEpisodeCount+2), '-') << "+" << string((widthMainActors+2), '-')
+        << "+" << string((widthMainCharacters+2), '-') << "+" << string((widthNetwork+2), '-') 
+        << "+" << string((widthRating+2), '-') << "+"<< endl;
+
+    os  << left << "| " << setw(widthInternalId)    << "internalID"
+                << " | " << setw(widthSerieName)    << "serieName"
+                << " | " << setw(widthReleaseYear)  << "releaseYear"
+                << " | " << setw(widthSeason)       << "season"
+                << " | " << setw(widthEpisodeCount) << "episodeCount"
+                << " | " << setw(widthMainActors)   << "mainActors"
+                << " | " << setw(widthMainCharacters) << "mainCharacters"
+                << " | " << setw(widthNetwork)      << "network"
+                << " | " << setw(widthRating)       << "rating"
+                << " |" << endl;
+
+    os  << "+" << string((widthInternalId+2), '-') << "+" << string((widthSerieName+2), '-')
+        << "+" << string((widthReleaseYear+2), '-') << "+" << string((widthSeason+2), '-')
+        << "+" << string((widthEpisodeCount+2), '-') << "+" << string((widthMainActors+2), '-')
+        << "+" << string((widthMainCharacters+2), '-') << "+" << string((widthNetwork+2), '-') 
+        << "+" << string((widthRating+2), '-') << "+"<< endl;
+
+    for (const Serie* serie : series) {
+        os << left  << "| " << setw(widthInternalId)       << serie->internalId
+                    << " | " << setw(widthSerieName)       << serie->serieName
+                    << " | " << setw(widthReleaseYear)     << serie->releaseYear
+                    << " | " << setw(widthSeason)          << serie->season
+                    << " | " << setw(widthEpisodeCount)    << serie->episodeCount
+                    << " | " << setw(widthMainActors)      << serie->mainActors
+                    << " | " << setw(widthMainCharacters)  << serie->mainCharacters
+                    << " | " << setw(widthNetwork)         << serie->network
+                    << " | " << setw(widthRating)          << serie->rating << " |" << endl;
+    }
+
+    os    << "+" << string((widthInternalId+2), '-') << "+" << string((widthSerieName+2), '-')
+            << "+" << string((widthReleaseYear+2), '-') << "+" << string((widthSeason+2), '-')
+            << "+" << string((widthEpisodeCount+2), '-') << "+" << string((widthMainActors+2), '-')
+            << "+" << string((widthMainCharacters+2), '-') << "+" << string((widthNetwork+2), '-') 
+            << "+" << string((widthRating+2), '-') << "+"<< endl; 
 
     return os;
 }

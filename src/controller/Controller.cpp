@@ -11,9 +11,6 @@
 
 Controller::Controller()
 {
-    // this->mariaDBConnection = mariaDBConnection
-    this->memoryDBConnection = memoryDBConnection;
-    this->serieDao = serieDao;
     this->serieController = new SerieController();
     this->utils = new Utils();
     
