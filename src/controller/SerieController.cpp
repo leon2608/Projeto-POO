@@ -105,18 +105,34 @@ void SerieController::actionSeriesRemoveRegister()
 
 void SerieController::actionReportsOrderByTitle(void)
 {
+    utils->clearScreen();
+    cout << serieDao->getSerieListOrderedByTitle() << endl;
+    utils->systemPause();
+    utils->clearScreen();
 }
 
 void SerieController::actionReportsOrderByNetwork(void)
 {
+    utils-> clearScreen();
+    cout << serieDao->getSerieListOrderedByNetwork() << endl;
+    utils-> systemPause();
+    utils-> clearScreen();
 }
 
 void SerieController::actionReportsOrderByYear(void)
 {
+    utils-> clearScreen();
+    cout << serieDao->getSerieListOrderedByYear() << endl;
+    utils-> systemPause();
+    utils-> clearScreen(); 
 }
 
 void SerieController::actionReportsOrderByRating(void)
 {
+    utils-> clearScreen();
+    cout << serieDao->getSerieListOrderedByRating() << endl;
+    utils-> systemPause();
+    utils-> clearScreen();
 }
 
 void SerieController::launchActions(string title, vector<string> menuItens, vector<void (SerieController::*)()> functions)
