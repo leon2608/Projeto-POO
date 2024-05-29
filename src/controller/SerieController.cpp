@@ -15,11 +15,10 @@
 
 SerieController::SerieController()
 {
-    this->mariaDBConnection = new MariaDBConnection();
+    //this->mariaDBConnection = new MariaDBConnection();
     this->memoryDBConnection = new MemoryDBConnection();
     this->serieDao = new MemorySerieDao(memoryDBConnection);
     this->utils = new Utils();
-    this->serieDao = new MariaDBSerieDao(mariaDBConnection);
 
     serieDao->addSerie(new Serie(1, "Mystic Falls", 2021, 3, 30, "Jane Doe, John Smith", "Alice, Bob", "ABC", 8));
     serieDao->addSerie(new Serie(2, "Galactic Wars", 2020, 2, 24, "Emily Clark, George Doe", "Captain Rex, Zara", "Netflix", 7));
