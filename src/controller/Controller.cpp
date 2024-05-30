@@ -40,12 +40,12 @@ void Controller::actionReports()
 
 void Controller::actionHelp()
 {
-    // TODO: Implement actionHelp method
 }
 
 void Controller::actionCredits()
 {
-    // TODO: Implement actionCredits method
+    utils->clearScreen();
+    this->serieController->launchActionsCredits();
 }
 
 void Controller::launchActions(string title, vector<string> menuItens, vector<void (Controller::*)()> functions)

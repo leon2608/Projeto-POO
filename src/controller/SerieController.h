@@ -35,6 +35,7 @@ public:
     virtual ~SerieController();
     void launchActionsSeries(void);
     void launchActionsReports(void);
+    void launchActionsCredits(void);
 
     Serie* addRegister();
 };
