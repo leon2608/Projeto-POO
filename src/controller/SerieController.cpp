@@ -1,3 +1,7 @@
+#include "SerieController.h"
+#include "../model/Serie.h"
+#include "../utils/Menu.h"
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,11 +20,17 @@
 
 SerieController::SerieController()
 {
-    // this->mariaDBConnection = new MariaDBConnection();
-    this->memoryDBConnection = new MemoryDBConnection();
-    this->serieDao = new MemorySerieDao(memoryDBConnection);
     this->utils = new Utils();
 
+    // Serie controller constructor for MariaDB
+    // this->mariaDBConnection = new MariaDBConnection();
+    // this->serieDao = new MariaDBSerieDao(mariaDBConnection);
+
+    // Serie controller constructor for Memory
+    this->memoryDBConnection = new MemoryDBConnection();
+    this->serieDao = new MemorySerieDao(memoryDBConnection);
+
+    // Mocking data for testing purposes only (Memory)
     serieDao->addSerie(new Serie(1, "Mystic Falls", 2021, 3, 30, "Jane Doe, John Smith", "Alice, Bob", "ABC", 8));
     serieDao->addSerie(new Serie(2, "Galactic Wars", 2020, 2, 24, "Emily Clark, George Doe", "Captain Rex, Zara", "Netflix", 7));
     serieDao->addSerie(new Serie(3, "Time Travelers", 2019, 4, 40, "Sarah Brown, Michael White", "Liam, Emma", "HBO", 9));
@@ -44,6 +54,30 @@ void SerieController::launchActionsSeries(void)
 }
 void SerieController::launchActionsReports(void)
 {
+   vector<string> menuItens{"Ordenar a partir do Título", "Ordenar a partir do Network", "Ordenar a partir do Ano de Lançamento", "Ordenar a partir da Nota", "Sair"};
+    vector<void (SerieController::*)()> functions{&SerieController::actionReportsOrderByTitle, &SerieController::actionReportsOrderByNetwork, &SerieController::actionReportsOrderByYear, &SerieController::actionReportsOrderByRating};
+    launchActions("Menu Relatorios", menuItens, functions); 
+}
+
+void SerieController::launchActionsCredits(void)
+{
+    int widthName = 30;
+    int widthRa = 6;
+    int widthCreditsOverall = widthName + widthRa;
+
+    cout << "+" << string((widthCreditsOverall+5), '-') << "+" << endl;
+    cout << "| " << left << setw(widthCreditsOverall+3) << "Lista de desenvolvedores do Projeto" << " |" << endl;
+    cout << "+" << string((widthName+2), '-') << "+" << string((widthRa+2), '-') << "+" << endl;
+    cout << "| " << left << setw(widthName) << "Nomes" << " | " << setw(widthRa) << "RA's" << " |" << endl;
+    cout << "+" << string((widthName+2), '-') << "+" << string((widthRa+2), '-') << "+" << endl;
+    cout << "| " << left << setw(widthName) << "Luiz Henrique Firmino de Jesus" << " | " << setw(widthRa) << "176204" << " |" << endl;
+    cout << "| " << left << setw(widthName) << "Vinicius Duarte Cegalla" << " | " << setw(widthRa) << "247095" << " |" << endl;
+    cout << "| " << left << setw(widthName) << "Leonardo Rodrigues Da Silva" << " | " << setw(widthRa) << "251773" << " |" << endl;
+    cout << "| " << left << setw(widthName) << "Gabriel Dias Ponsoni" << " | " << setw(widthRa) << "257103" << " |" << endl;
+    cout << "+" << string((widthName+2), '-') << "+" << string((widthRa+2), '-') << "+" << endl;
+
+    utils->systemPause();
+    utils->clearScreen();
 }
 
 void SerieController::actionSeriesAddRegister()
@@ -196,18 +230,34 @@ void SerieController::actionSeriesRemoveRegister()
 
 void SerieController::actionReportsOrderByTitle(void)
 {
+    utils->clearScreen();
+    cout << serieDao->getSerieListOrderedByTitle() << endl;
+    utils->systemPause();
+    utils->clearScreen();
 }
 
 void SerieController::actionReportsOrderByNetwork(void)
 {
+    utils-> clearScreen();
+    cout << serieDao->getSerieListOrderedByNetwork() << endl;
+    utils-> systemPause();
+    utils-> clearScreen();
 }
 
 void SerieController::actionReportsOrderByYear(void)
 {
+    utils-> clearScreen();
+    cout << serieDao->getSerieListOrderedByYear() << endl;
+    utils-> systemPause();
+    utils-> clearScreen(); 
 }
 
 void SerieController::actionReportsOrderByRating(void)
 {
+    utils-> clearScreen();
+    cout << serieDao->getSerieListOrderedByRating() << endl;
+    utils-> systemPause();
+    utils-> clearScreen();
 }
 
 void SerieController::launchActions(string title, vector<string> menuItens, vector<void (SerieController::*)()> functions)

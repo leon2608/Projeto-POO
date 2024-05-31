@@ -2,7 +2,6 @@
 
 #include "MemorySerieDao.h"
 #include "../connection/MemoryDBConnection.h"
-#include "../../model/Serie.h"
 
 int MemorySerieDao::lastSerieId = 0;
 

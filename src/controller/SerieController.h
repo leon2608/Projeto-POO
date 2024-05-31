@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 
-#include "../data/dao/MemorySerieDao.h"
+#include "../data/dao/AbstractSerieDao.h"
 #include "../data/dao/MariaDBSerieDao.h"
+#include "../data/dao/MemorySerieDao.h"
 #include "../utils/Utils.h"
 
 using namespace std;
@@ -13,10 +14,12 @@ using namespace std;
 class SerieController
 {
 private:
-    MemoryDBConnection *memoryDBConnection;
-    MariaDBConnection *mariaDBConnection;
     AbstractSerieDao *serieDao;
+    MariaDBConnection *mariaDBConnection;
+    MemoryDBConnection *memoryDBConnection;
     Utils *utils;
+
+    Serie* addRegister();
 
     void actionSeriesAddRegister(void);
     void actionSeriesRestoreRegister(void);
@@ -37,6 +40,7 @@ public:
     void launchActionsReports(void);
 
     Serie *addRegister();
+    void launchActionsCredits(void);
 };
 
 #endif // SERIE_CONTROLLER_H

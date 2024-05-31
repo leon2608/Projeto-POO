@@ -1,6 +1,5 @@
 #include "Menu.h"
 #include <math.h>
-using namespace std;
 
 Menu::Menu(vector<string> &itens, string title, string message) : title(title), message(message), itens(itens)
 {
