@@ -1,9 +1,9 @@
+#include "Serie.h"
+
 #include <iostream>
 #include <string>
 #include <iomanip>
 #include <algorithm>
-
-#include "Serie.h"
 
 using namespace std;
 

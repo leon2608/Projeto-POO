@@ -1,3 +1,7 @@
+#include "SerieController.h"
+#include "../model/Serie.h"
+#include "../utils/Menu.h"
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,21 +9,19 @@
 #include <initializer_list>
 #include <iomanip>
 
-#include "../model/Serie.h"
-#include "../data/dao/MemorySerieDao.h"
-#include "../data/dao/AbstractSerieDao.h"
-#include "SerieController.h"
-#include "../data/dao/MariaDBSerieDao.h"
-#include "../utils/Menu.h"
-#include "../utils/Utils.h"
-
 SerieController::SerieController()
 {
-    //this->mariaDBConnection = new MariaDBConnection();
-    this->memoryDBConnection = new MemoryDBConnection();
-    this->serieDao = new MemorySerieDao(memoryDBConnection);
     this->utils = new Utils();
 
+    // Serie controller constructor for MariaDB
+    // this->mariaDBConnection = new MariaDBConnection();
+    // this->serieDao = new MariaDBSerieDao(mariaDBConnection);
+
+    // Serie controller constructor for Memory
+    this->memoryDBConnection = new MemoryDBConnection();
+    this->serieDao = new MemorySerieDao(memoryDBConnection);
+
+    // Mocking data for testing purposes only (Memory)
     serieDao->addSerie(new Serie(1, "Mystic Falls", 2021, 3, 30, "Jane Doe, John Smith", "Alice, Bob", "ABC", 8));
     serieDao->addSerie(new Serie(2, "Galactic Wars", 2020, 2, 24, "Emily Clark, George Doe", "Captain Rex, Zara", "Netflix", 7));
     serieDao->addSerie(new Serie(3, "Time Travelers", 2019, 4, 40, "Sarah Brown, Michael White", "Liam, Emma", "HBO", 9));

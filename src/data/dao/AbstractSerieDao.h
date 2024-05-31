@@ -1,8 +1,8 @@
 #ifndef ABSTRACT_SERIE_DAO_H
 #define ABSTRACT_SERIE_DAO_H
 
-#include <vector>
 #include "../../model/Serie.h"
+#include <vector>
 
 using namespace std;
 
