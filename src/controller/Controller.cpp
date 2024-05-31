@@ -2,11 +2,8 @@
 #include <string>
 #include <vector>
 
-#include "SerieController.h"
 #include "Controller.h"
 #include "../utils/Menu.h"
-#include "../utils/Utils.h"
-#include "../data/dao/MemorySerieDao.h"
 
 
 Controller::Controller()
@@ -40,12 +37,12 @@ void Controller::actionReports()
 
 void Controller::actionHelp()
 {
-    // TODO: Implement actionHelp method
 }
 
 void Controller::actionCredits()
 {
-    // TODO: Implement actionCredits method
+    utils->clearScreen();
+    this->serieController->launchActionsCredits();
 }
 
 void Controller::launchActions(string title, vector<string> menuItens, vector<void (Controller::*)()> functions)
