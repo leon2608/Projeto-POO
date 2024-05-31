@@ -322,8 +322,3 @@ Serie *SerieController::addRegister()
 
     return new Serie(lastSerieId, serieName, releaseYear, season, episodeCount, mainActors, mainCharacters, network, rating);
 }
-
-const bool SerieController::isNotAValidChoice(unsigned long choice, vector<string> itens) const
-{
-    return ((choice < 0) || (choice > (itens.size() - 1)));
-}

@@ -19,7 +19,7 @@ private:
     MemoryDBConnection *memoryDBConnection;
     Utils *utils;
 
-    Serie* addRegister();
+    Serie *addRegister();
 
     void actionSeriesAddRegister(void);
     void actionSeriesRestoreRegister(void);
@@ -39,7 +39,6 @@ public:
     void launchActionsSeries(void);
     void launchActionsReports(void);
 
-    Serie *addRegister();
     void launchActionsCredits(void);
 };
 
