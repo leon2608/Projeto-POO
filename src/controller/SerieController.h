@@ -36,7 +36,7 @@ public:
     void launchActionsSeries(void);
     void launchActionsReports(void);
 
-    Serie* addRegister();
+    Serie *addRegister();
 };
 
 #endif // SERIE_CONTROLLER_H

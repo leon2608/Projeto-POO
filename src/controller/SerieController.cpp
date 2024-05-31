@@ -2,12 +2,14 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <functional>
 #include <initializer_list>
 #include <iomanip>
 
 #include "../model/Serie.h"
 #include "../data/dao/MemorySerieDao.h"
 #include "../data/dao/AbstractSerieDao.h"
+#include "../data/connection/MemoryDBConnection.h"
 #include "SerieController.h"
 #include "../utils/Menu.h"
 #include "../utils/Utils.h"
@@ -40,7 +42,6 @@ void SerieController::launchActionsSeries(void)
     vector<void (SerieController::*)()> functions{&SerieController::actionSeriesAddRegister, &SerieController::actionSeriesRestoreRegister, &SerieController::actionSeriesEditRegister, &SerieController::actionSeriesRemoveRegister};
     launchActions("Menu Registro", menuItens, functions);
 }
-
 void SerieController::launchActionsReports(void)
 {
 }
@@ -67,6 +68,7 @@ void SerieController::actionSeriesAddRegister()
 
 void SerieController::actionSeriesRestoreRegister()
 {
+    utils->clearScreen();
     SerieController registro;
     Serie *serie;
     int serieId;
@@ -92,6 +94,100 @@ void SerieController::actionSeriesRestoreRegister()
 
 void SerieController::actionSeriesEditRegister()
 {
+    utils->clearScreen();
+    int serieId;
+    vector<string> menuItens{
+        "Editar Nome",
+        "Editar Ano de Lançamento",
+        "Editar Temporada",
+        "Editar Contagem de Episódios",
+        "Editar Atores Principais",
+        "Editar Personagens Principais",
+        "Editar Canal de Exibição",
+        "Editar Avaliação",
+        "Sair"};
+
+    vector<Serie *> series;
+    Serie *serie;
+    series = serieDao->getSerieList();
+    cout << series << endl;
+    cout << "Digite o ID da série que você deseja alterar:" << endl;
+    cin >> serieId;
+    serie = serieDao->getSerieById(serieId);
+    if (serie != nullptr)
+    {
+        utils->clearScreen();
+        cout << *serie << endl;
+        vector<function<void(int)>> functionsEdit{
+            [this](int id)
+            {
+                string newName;
+                cout << "Digite o novo nome: ";
+                cin.ignore();
+                getline(cin, newName);
+                serieDao->updateSerieName(id, newName);
+            },
+            [this](int id)
+            {
+                int newYear;
+                cout << "Digite o novo ano de lançamento: ";
+                cin >> newYear;
+                serieDao->updateSerieYear(id, newYear);
+            },
+            [this](int id)
+            {
+                int newSeason;
+                cout << "Digite a nova temporada: ";
+                cin >> newSeason;
+                serieDao->updateSerieSeason(id, newSeason);
+            },
+            [this](int id)
+            {
+                int newEpisodeCount;
+                cout << "Digite a nova contagem de episódios: ";
+                cin >> newEpisodeCount;
+                serieDao->updateSerieEpisodeCount(id, newEpisodeCount);
+            },
+            [this](int id)
+            {
+                string newMainActors;
+                cout << "Digite os novos atores principais: ";
+                cin.ignore();
+                getline(cin, newMainActors);
+                serieDao->updateSerieMainActors(id, newMainActors);
+            },
+            [this](int id)
+            {
+                string newMainCharacters;
+                cout << "Digite os novos personagens principais: ";
+                cin.ignore();
+                getline(cin, newMainCharacters);
+                serieDao->updateSerieMainCharacters(id, newMainCharacters);
+            },
+            [this](int id)
+            {
+                string newNetwork;
+                cout << "Digite o novo canal de exibição: ";
+                cin.ignore();
+                getline(cin, newNetwork);
+                serieDao->updateSerieNetwork(id, newNetwork);
+            },
+            [this](int id)
+            {
+                int newRating;
+                cout << "Digite a nova avaliação: ";
+                cin >> newRating;
+                serieDao->updateSerieRating(id, newRating);
+            }};
+
+        Menu menu(menuItens, "Qual informação você deseja alterar?", "Your option: ");
+        menu.setSymbol("*");
+
+        while (int choice = menu.getChoice())
+        {
+            functionsEdit[choice - 1](serieId);
+        }
+    }
 }
 
 void SerieController::actionSeriesRemoveRegister()
@@ -175,4 +271,9 @@ Serie *SerieController::addRegister()
     utils->clearScreen();
 
     return new Serie(lastSerieId, serieName, releaseYear, season, episodeCount, mainActors, mainCharacters, network, rating);
+}
+
+const bool SerieController::isNotAValidChoice(unsigned long choice, vector<string> itens) const
+{
+    return ((choice < 0) || (choice > (itens.size() - 1)));
 }

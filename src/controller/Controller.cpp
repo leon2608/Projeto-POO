@@ -30,7 +30,7 @@ void Controller::actionSeries()
 {
     utils->clearScreen();
     serieController->launchActionsSeries();
-    this->serieController->launchActionsSeries();
+    utils->clearScreen();
 }
 
 void Controller::actionReports()
