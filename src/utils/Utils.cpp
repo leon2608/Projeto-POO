@@ -43,7 +43,6 @@ void Utils::systemPause()
     system("pause");
 #else
     cout << "Pressione Enter para continuar...";
-    cin.ignore();
     cin.get();
 #endif
 }
