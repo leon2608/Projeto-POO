@@ -9,6 +9,7 @@
 #include <functional>
 #include <initializer_list>
 #include <iomanip>
+#include <limits>
 
 #include "../model/Serie.h"
 #include "../data/dao/MemorySerieDao.h"
@@ -117,7 +118,7 @@ void SerieController::launchActionsCredits(void)
     cout << "| " << left << setw(widthName) << "Gabriel Dias Ponsoni" << " | " << setw(widthRa) << "257103" << " |" << endl;
     cout << "+" << string((widthName + 2), '-') << "+" << string((widthRa + 2), '-') << "+" << endl;
 
-    utils->systemPause();
+    utils->pausar();
     utils->clearScreen();
 }
 
@@ -131,8 +132,8 @@ void SerieController::actionSeriesAddRegister()
         utils->clearScreen();
         this->serieDao->addSerie(newSerie);
         cout << "Série cadastrada com sucesso!!" << endl;
-        cout << *newSerie;
-        utils->systemPause();
+        cout << *newSerie << endl;
+        utils->pausar();
         utils->clearScreen();
     }
     else
@@ -155,14 +156,14 @@ void SerieController::actionSeriesRestoreRegister()
     {
         utils->clearScreen();
         cout << *serie;
-        utils->systemPause();
+        utils->pausar();
         utils->clearScreen();
     }
     else
     {
         utils->clearScreen();
         cout << "Nenhum registro foi encontrado com esse ID." << endl;
-        utils->systemPause();
+        utils->pausar();
         utils->clearScreen();
     }
 }
@@ -182,6 +183,7 @@ void SerieController::actionSeriesEditRegister()
     {
         utils->clearScreen();
         launchActionsEdit(serieId);
+        utils->clearScreen();
     }
 }
 
@@ -193,7 +195,7 @@ void SerieController::actionReportsOrderByTitle(void)
 {
     utils->clearScreen();
     cout << serieDao->getSerieListOrderedByTitle() << endl;
-    utils->systemPause();
+    utils->pausar();
     utils->clearScreen();
 }
 
@@ -201,7 +203,7 @@ void SerieController::actionReportsOrderByNetwork(void)
 {
     utils->clearScreen();
     cout << serieDao->getSerieListOrderedByNetwork() << endl;
-    utils->systemPause();
+    utils->pausar();
     utils->clearScreen();
 }
 
@@ -209,7 +211,7 @@ void SerieController::actionReportsOrderByYear(void)
 {
     utils->clearScreen();
     cout << serieDao->getSerieListOrderedByYear() << endl;
-    utils->systemPause();
+    utils->pausar();
     utils->clearScreen();
 }
 
@@ -217,7 +219,7 @@ void SerieController::actionReportsOrderByRating(void)
 {
     utils->clearScreen();
     cout << serieDao->getSerieListOrderedByRating() << endl;
-    utils->systemPause();
+    utils->pausar();
     utils->clearScreen();
 }
 
@@ -304,64 +306,112 @@ Serie *SerieController::addRegister()
 
 void SerieController::updateName(int id)
 {
+    Serie *serie;
+    serie = serieDao->getSerieById(id);
     string newName;
     cout << "Digite o novo nome: ";
     getline(cin, newName);
     serieDao->updateSerieName(id, newName);
+    cout << "Série id: " << id << " após a mudança!" << endl;
+    cout << *serie;
+    utils->pausar();
+    utils->clearScreen();
 }
 
 void SerieController::updateYear(int id)
 {
+    Serie *serie;
+    serie = serieDao->getSerieById(id);
     int newYear;
     cout << "Digite o novo ano de lançamento: ";
     cin >> newYear;
     serieDao->updateSerieYear(id, newYear);
+    cout << "Série id: " << id << " após a mudança!" << endl;
+    cout << *serie;
+    utils->pausar();
+    utils->clearScreen();
 }
 
 void SerieController::updateSeason(int id)
-{
+{   
+    Serie *serie;
+    serie = serieDao->getSerieById(id);
     int newSeason;
     cout << "Digite a nova temporada: ";
     cin >> newSeason;
     serieDao->updateSerieSeason(id, newSeason);
+    cout << "Série id: " << id << " após a mudança!" << endl;
+    cout << *serie;
+    utils->pausar();
+    utils->clearScreen();
 }
 
 void SerieController::updateEpisodeCount(int id)
 {
+    Serie *serie;
+    serie = serieDao->getSerieById(id);
     int newEpisodeCount;
     cout << "Digite a nova contagem de episódios: ";
     cin >> newEpisodeCount;
     serieDao->updateSerieEpisodeCount(id, newEpisodeCount);
+    cout << "Série id: " << id << " após a mudança!" << endl;
+    cout << *serie;
+    utils->pausar();
+    utils->clearScreen();
 }
 
 void SerieController::updateMainActors(int id)
 {
+    Serie *serie;
+    serie = serieDao->getSerieById(id);
     string newMainActors;
     cout << "Digite os novos atores principais: ";
     getline(cin, newMainActors);
     serieDao->updateSerieMainActors(id, newMainActors);
+    cout << "Série id: " << id << " após a mudança!" << endl;
+    cout << *serie;
+    utils->pausar();
+    utils->clearScreen();
 }
 
 void SerieController::updateMainCharacters(int id)
 {
+    Serie *serie;
+    serie = serieDao->getSerieById(id);
     string newMainCharacters;
     cout << "Digite os novos personagens principais: ";
     getline(cin, newMainCharacters);
     serieDao->updateSerieMainCharacters(id, newMainCharacters);
+    cout << "Série id: " << id << " após a mudança!" << endl;
+    cout << *serie;
+    utils->pausar();
+    utils->clearScreen();
 }
 
 void SerieController::updateNetwork(int id)
 {
+    Serie *serie;
+    serie = serieDao->getSerieById(id);
     string newNetwork;
     cout << "Digite o novo canal de exibição: ";
     getline(cin, newNetwork);
     serieDao->updateSerieNetwork(id, newNetwork);
+    cout << "Série id: " << id << " após a mudança!" << endl;
+    cout << *serie;
+    utils->pausar();
+    utils->clearScreen();
 }
 
 void SerieController::updateRating(int id)
 {
+    Serie *serie;
+    serie = serieDao->getSerieById(id);
     int newRating;
     cout << "Digite a nova avaliação: ";
     cin >> newRating;
     serieDao->updateSerieRating(id, newRating);
+    cout << "Série id: " << id << " após a mudança!" << endl;
+    cout << *serie;
+    utils->pausar();
+    utils->clearScreen();
 }

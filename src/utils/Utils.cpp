@@ -1,6 +1,7 @@
 #include "Utils.h"
 #include "SysInfo.h"
 #include <iostream>
+#include <limits>
 
 Utils::Utils()
 {
@@ -37,12 +38,11 @@ void Utils::clearScreen()
     system("clear||cls");
 }
 
-void Utils::systemPause()
+
+
+void Utils::pausar()
 {
-#ifdef _WIN32
-    system("pause");
-#else
     cout << "Pressione Enter para continuar...";
-    cin.get();
-#endif
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();                                           
 }
