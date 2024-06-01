@@ -5,12 +5,10 @@
 #include "Controller.h"
 #include "../utils/Menu.h"
 
-
 Controller::Controller()
 {
     this->serieController = new SerieController();
     this->utils = new Utils();
-    
 }
 Controller::~Controller()
 {
@@ -32,7 +30,9 @@ void Controller::actionSeries()
 
 void Controller::actionReports()
 {
+    utils->clearScreen();
     this->serieController->launchActionsReports();
+    utils->clearScreen();
 }
 
 void Controller::actionHelp()
