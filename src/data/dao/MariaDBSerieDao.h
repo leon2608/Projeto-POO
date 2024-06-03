@@ -8,7 +8,10 @@ class MariaDBSerieDao : public AbstractSerieDao
 {
 private:
     static const string SQL_GET_SERIE_LIST;
-    static const string SQL_GET_SERIE_LIST_ORDERED_BY;
+    static const string SQL_GET_SERIE_LIST_ORDERED_BY_TITLE;
+    static const string SQL_GET_SERIE_LIST_ORDERED_BY_NETWORK;
+    static const string SQL_GET_SERIE_LIST_ORDERED_BY_YEAR;
+    static const string SQL_GET_SERIE_LIST_ORDERED_BY_RATING;
     static const string SQL_GET_SERIE_BY_ID;
     static const string SQL_ADD_SERIE;
     static const string SQL_REMOVE_SERIE;

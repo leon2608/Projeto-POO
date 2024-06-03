@@ -1,7 +1,10 @@
 #include "MariaDBSerieDao.h"
 
 const string MariaDBSerieDao::SQL_GET_SERIE_LIST = "SELECT * FROM SERIES";
-const string MariaDBSerieDao::SQL_GET_SERIE_LIST_ORDERED_BY = "SELECT * FROM SERIES ORDER BY ?";
+const string MariaDBSerieDao::SQL_GET_SERIE_LIST_ORDERED_BY_TITLE = "SELECT * FROM SERIES ORDER BY series_name";
+const string MariaDBSerieDao::SQL_GET_SERIE_LIST_ORDERED_BY_NETWORK = "SELECT * FROM SERIES ORDER BY network";
+const string MariaDBSerieDao::SQL_GET_SERIE_LIST_ORDERED_BY_YEAR = "SELECT * FROM SERIES ORDER BY release_year";
+const string MariaDBSerieDao::SQL_GET_SERIE_LIST_ORDERED_BY_RATING = "SELECT * FROM SERIES ORDER BY rating";
 const string MariaDBSerieDao::SQL_GET_SERIE_BY_ID = "SELECT * FROM SERIES WHERE internal_id = ?";
 const string MariaDBSerieDao::SQL_ADD_SERIE = "INSERT INTO SERIES (series_name, release_year, season, episode_count, main_actors, main_characters, network, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 const string MariaDBSerieDao::SQL_REMOVE_SERIE = "DELETE FROM SERIES WHERE internal_id = ?";
@@ -63,9 +66,8 @@ vector<Serie *> MariaDBSerieDao::getSerieListOrderedByTitle() const
 
     try
     {
-        unique_ptr<sql::PreparedStatement> preparedStatement(this->connection->getConnection()->prepareStatement(SQL_GET_SERIE_LIST_ORDERED_BY));
-        preparedStatement->setString(1, "series_name");
-        unique_ptr<sql::ResultSet> resultSet(preparedStatement->executeQuery());
+        unique_ptr<sql::Statement> statement(this->connection->getConnection()->createStatement());
+        unique_ptr<sql::ResultSet> resultSet(statement->executeQuery(SQL_GET_SERIE_LIST_ORDERED_BY_TITLE));
 
         while (resultSet->next())
         {
@@ -98,9 +100,8 @@ vector<Serie *> MariaDBSerieDao::getSerieListOrderedByNetwork() const
 
     try
     {
-        unique_ptr<sql::PreparedStatement> preparedStatement(this->connection->getConnection()->prepareStatement(SQL_GET_SERIE_LIST_ORDERED_BY));
-        preparedStatement->setString(1, "network");
-        unique_ptr<sql::ResultSet> resultSet(preparedStatement->executeQuery());
+        unique_ptr<sql::Statement> statement(this->connection->getConnection()->createStatement());
+        unique_ptr<sql::ResultSet> resultSet(statement->executeQuery(SQL_GET_SERIE_LIST_ORDERED_BY_NETWORK));
 
         while (resultSet->next())
         {
@@ -133,9 +134,8 @@ vector<Serie *> MariaDBSerieDao::getSerieListOrderedByYear() const
 
     try
     {
-        unique_ptr<sql::PreparedStatement> preparedStatement(this->connection->getConnection()->prepareStatement(SQL_GET_SERIE_LIST_ORDERED_BY));
-        preparedStatement->setString(1, "release_year");
-        unique_ptr<sql::ResultSet> resultSet(preparedStatement->executeQuery());
+        unique_ptr<sql::Statement> statement(this->connection->getConnection()->createStatement());
+        unique_ptr<sql::ResultSet> resultSet(statement->executeQuery(SQL_GET_SERIE_LIST_ORDERED_BY_YEAR));
 
         while (resultSet->next())
         {
@@ -168,9 +168,8 @@ vector<Serie *> MariaDBSerieDao::getSerieListOrderedByRating() const
 
     try
     {
-        unique_ptr<sql::PreparedStatement> preparedStatement(this->connection->getConnection()->prepareStatement(SQL_GET_SERIE_LIST_ORDERED_BY));
-        preparedStatement->setString(1, "rating");
-        unique_ptr<sql::ResultSet> resultSet(preparedStatement->executeQuery());
+        unique_ptr<sql::Statement> statement(this->connection->getConnection()->createStatement());
+        unique_ptr<sql::ResultSet> resultSet(statement->executeQuery(SQL_GET_SERIE_LIST_ORDERED_BY_RATING));
 
         while (resultSet->next())
         {
