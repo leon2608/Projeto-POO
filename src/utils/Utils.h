@@ -15,6 +15,7 @@ public:
     static string replicate(string text, int times);
     static void clearScreen();
     void pausar();
+    static string getFileContent(string fileName);
 };
 
 #endif // UTILS_H

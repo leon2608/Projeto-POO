@@ -2,6 +2,12 @@
 #include "SysInfo.h"
 #include <iostream>
 #include <limits>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <stdexcept>
+
+using namespace std;
 
 Utils::Utils()
 {
@@ -38,11 +44,34 @@ void Utils::clearScreen()
     system("clear||cls");
 }
 
-
-
 void Utils::pausar()
 {
     cout << "Pressione Enter para continuar...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cin.get();                                           
+    cin.get();
+}
+
+string Utils::getFileContent(string fileName)
+{
+ string fileContent = "";
+	try
+		{
+		ifstream inputFile(fileName);
+		stringstream buffer;
+
+		if (!inputFile.is_open())
+			{
+			throw runtime_error("Failed to open the file: " + fileName);
+			}
+
+		buffer << inputFile.rdbuf(); // Read entire file into the buffer
+		inputFile.close();
+		fileContent = buffer.str();
+		}
+	catch (const exception &myException)
+		{
+		Utils::printMessage("Unexpected problem: " + string(myException.what()));
+		}
+    return fileContent; 
+
 }

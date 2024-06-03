@@ -130,7 +130,7 @@ ostream& operator<<(std::ostream& os, const Serie& serie)
 
     int widthRight = max({widthMainActors, widthMainCharacters, widthNetwork,
                            widthInternalId, widthReleaseYear, widthSeason, widthEpisodeCount, widthRating});
-    int widthLeft = 23;
+    int widthLeft = 25;
     int widthOverall = widthRight + widthLeft;
 
     if (widthOverall < serie.serieName.length())  
@@ -146,8 +146,8 @@ ostream& operator<<(std::ostream& os, const Serie& serie)
     os << "| " << left << setw(widthLeft) << "Ano de lancamento: "       << right << setw(widthRight) << serie.releaseYear    << " |" << endl;
     os << "| " << left << setw(widthLeft) << "Temporadas: "              << right << setw(widthRight) << serie.season         << " |" << endl;
     os << "| " << left << setw(widthLeft) << "Numero de episodios: "     << right << setw(widthRight) << serie.episodeCount   << " |" << endl;
-    os << "| " << left << setw(widthLeft) << "Ator/Atriz principal: "    << right << setw(widthRight) << serie.mainActors     << " |" << endl;
-    os << "| " << left << setw(widthLeft) << "Personagem principal: "    << right << setw(widthRight) << serie.mainCharacters << " |" << endl;
+    os << "| " << left << setw(widthLeft) << "Atores principais: "       << right << setw(widthRight) << serie.mainActors     << " |" << endl;
+    os << "| " << left << setw(widthLeft) << "Personagens principais: "  << right << setw(widthRight) << serie.mainCharacters << " |" << endl;
     os << "| " << left << setw(widthLeft) << "Canal/Streaming: "         << right << setw(widthRight) << serie.network        << " |" << endl;
     os << "| " << left << setw(widthLeft) << "Nota de classificacao: "   << right << setw(widthRight) << serie.rating         << " |" << endl;
     os << "+" << string((widthOverall + 2), '-') << "+" << endl;

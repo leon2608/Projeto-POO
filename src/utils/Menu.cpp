@@ -12,12 +12,10 @@ Menu::~Menu()
 {
 }
 
-
 void Menu::setWidth(int width)
 {
     this->width = width;
 }
-
 
 const bool Menu::isNotAValidChoice(unsigned long choice) const
 {
@@ -49,6 +47,7 @@ const string Menu::replicate(string text, int times) const
     }
     return (buffer);
 }
+
 void Menu::setSymbol(const string &symbol)
 {
     this->symbol = symbol;
