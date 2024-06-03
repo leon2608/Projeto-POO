@@ -189,6 +189,30 @@ void SerieController::actionSeriesEditRegister()
 
 void SerieController::actionSeriesRemoveRegister()
 {
+    utils->clearScreen();
+    int serieId;
+    vector<Serie *> series;
+    Serie *serie;
+    series = serieDao->getSerieList();
+    cout << series << endl;
+    cout << "Digite o ID da série que você deseja remover:" << endl;
+    cin >> serieId;
+    serie = serieDao->getSerieById(serieId);
+    if (serie != nullptr){
+        cout << "Digite 1 se realmente deseje remover essa série " << serie->getSerieName() << " ?" << endl;
+        int confirm;
+        cin >> confirm;
+    if (confirm != 1){
+        cout << "Remoção de série cancelada." << endl;
+    }else{
+        utils->clearScreen();
+        serieDao->removeSerie(serieId);
+        utils->clearScreen();
+        cout << "Remoção realizada" << endl;
+        utils->pausar();
+        utils->clearScreen();
+        }
+    }
 }
 
 void SerieController::actionReportsOrderByTitle(void)
