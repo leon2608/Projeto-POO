@@ -47,7 +47,7 @@ void Utils::clearScreen()
 void Utils::pausar()
 {
     cout << "Pressione Enter para continuar...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cin.ignore();
     cin.get();
 }
 

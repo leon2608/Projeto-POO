@@ -112,7 +112,7 @@ void SerieController::actionSeriesAddRegister()
         utils->clearScreen();
         this->serieDao->addSerie(newSerie);
         cout << "Série cadastrada com sucesso!!" << endl;
-        cout << *newSerie << endl;
+        cout << *newSerie;
         utils->pausar();
         utils->clearScreen();
     }
@@ -198,7 +198,7 @@ void SerieController::actionSeriesRemoveRegister()
 void SerieController::actionReportsOrderByTitle(void)
 {
     utils->clearScreen();
-    cout << serieDao->getSerieListOrderedByTitle() << endl;
+    cout << serieDao->getSerieListOrderedByTitle();
     utils->pausar();
     utils->clearScreen();
 }
@@ -206,7 +206,7 @@ void SerieController::actionReportsOrderByTitle(void)
 void SerieController::actionReportsOrderByNetwork(void)
 {
     utils->clearScreen();
-    cout << serieDao->getSerieListOrderedByNetwork() << endl;
+    cout << serieDao->getSerieListOrderedByNetwork();
     utils->pausar();
     utils->clearScreen();
 }
@@ -214,7 +214,7 @@ void SerieController::actionReportsOrderByNetwork(void)
 void SerieController::actionReportsOrderByYear(void)
 {
     utils->clearScreen();
-    cout << serieDao->getSerieListOrderedByYear() << endl;
+    cout << serieDao->getSerieListOrderedByYear();
     utils->pausar();
     utils->clearScreen();
 }
@@ -222,7 +222,7 @@ void SerieController::actionReportsOrderByYear(void)
 void SerieController::actionReportsOrderByRating(void)
 {
     utils->clearScreen();
-    cout << serieDao->getSerieListOrderedByRating() << endl;
+    cout << serieDao->getSerieListOrderedByRating();
     utils->pausar();
     utils->clearScreen();
 }

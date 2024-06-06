@@ -42,6 +42,8 @@ void Controller::actionHelp()
     utils->clearScreen();
     string conteudo = utils->getFileContent("STVSHelp.txt");
     utils->printFramedMessage(conteudo, "*", 137);
+    cout << endl;
+
     utils->pausar();
     utils->clearScreen();
 }
@@ -62,7 +64,7 @@ void Controller::actionCredits()
     cout << "| " << left << setw(widthName) << "Vinicius Duarte Cegalla" << " | " << setw(widthRa) << "247095" << " |" << endl;
     cout << "| " << left << setw(widthName) << "Leonardo Rodrigues Da Silva" << " | " << setw(widthRa) << "251773" << " |" << endl;
     cout << "| " << left << setw(widthName) << "Gabriel Dias Ponsoni" << " | " << setw(widthRa) << "257103" << " |" << endl;
-    cout << "+" << string((widthName+2), '-') << "+" << string((widthRa+2), '-') << "+" << endl;
+    cout << "+" << string((widthName+2), '-') << "+" << string((widthRa+2), '-') << "+" << endl << endl;
 
     utils->pausar();
     utils->clearScreen();
