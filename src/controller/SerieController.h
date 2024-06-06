@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "../data/DataBaseSelector.h"
 #include "../data/dao/AbstractSerieDao.h"
 #include "../data/dao/MariaDBSerieDao.h"
 #include "../data/dao/MemorySerieDao.h"
@@ -44,7 +45,7 @@ private:
     void launchActionsInt(string title, vector<string>, vector<void (SerieController::*)(int)> functions, int id);
 
 public:
-    SerieController();
+    SerieController(DataBaseSelector dataBaseSelector);
     virtual ~SerieController();
     void launchActionsSeries(void);
     void launchActionsReports(void);

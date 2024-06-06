@@ -1,6 +1,10 @@
 #include "SerieController.h"
 #include "../model/Serie.h"
+#include "../data/dao/MemorySerieDao.h"
+#include "../data/dao/AbstractSerieDao.h"
+#include "../data/connection/MemoryDBConnection.h"
 #include "../utils/Menu.h"
+#include "../utils/Utils.h"
 
 #include <iostream>
 #include <string>
@@ -11,36 +15,48 @@
 #include <iomanip>
 #include <limits>
 
-#include "../model/Serie.h"
-#include "../data/dao/MemorySerieDao.h"
-#include "../data/dao/AbstractSerieDao.h"
-#include "../data/connection/MemoryDBConnection.h"
-#include "SerieController.h"
-#include "../utils/Menu.h"
-#include "../utils/Utils.h"
-
-SerieController::SerieController()
+SerieController::SerieController(DataBaseSelector dataBaseSelector)
 {
     this->utils = new Utils();
 
-    // Serie controller constructor for MariaDB
-    // this->mariaDBConnection = new MariaDBConnection();
-    // this->serieDao = new MariaDBSerieDao(mariaDBConnection);
+    this->memoryDBConnection = NULL;
+    this->mariaDBConnection = NULL;
+    switch (dataBaseSelector)
+    {
+        case DataBaseSelector::MEMORY:
+        {
+            // Serie controller constructor for Memory
+            this->memoryDBConnection = new MemoryDBConnection();
+            this->serieDao = new MemorySerieDao(memoryDBConnection);
 
-    // Serie controller constructor for Memory
-    this->memoryDBConnection = new MemoryDBConnection();
-    this->serieDao = new MemorySerieDao(memoryDBConnection);
+            // Mocking data for testing purposes only (Memory)
+            serieDao->addSerie(new Serie(1, "Mystic Falls", 2021, 3, 30, "Jane Doe, John Smith", "Alice, Bob", "ABC", 8));
+            serieDao->addSerie(new Serie(2, "Galactic Wars", 2020, 2, 24, "Emily Clark, George Doe", "Captain Rex, Zara", "Netflix", 7));
+            serieDao->addSerie(new Serie(3, "Time Travelers", 2019, 4, 40, "Sarah Brown, Michael White", "Liam, Emma", "HBO", 9));
+            serieDao->addSerie(new Serie(4, "Haunted Manor", 2022, 1, 10, "Anna Black, Chris Green", "Nina, Jack", "AMC", 6));
+            serieDao->addSerie(new Serie(5, "Cyber City", 2023, 2, 20, "David Miller, Laura Wilson", "Max, Lucy", "Amazon Prime", 8));
+            serieDao->addSerie(new Serie(6, "Royalty", 2021, 5, 50, "Olivia Jones, Robert Brown", "Queen Elizabeth, Prince Arthur", "BBC", 7));
+            serieDao->addSerie(new Serie(7, "Wild West", 2020, 3, 30, "William Taylor, Emma Stone", "Sheriff Bob, Annie", "Hulu", 8));
+            serieDao->addSerie(new Serie(8, "Future Tech", 2018, 4, 35, "Sophia Lee, Ryan Harris", "Dr. X, Agent Y", "CBS", 9));
+            serieDao->addSerie(new Serie(9, "Island Mystery", 2022, 1, 12, "Jessica Davis, Mark Robinson", "Hannah, Tom", "NBC", 6));
 
-    // Mocking data for testing purposes only (Memory)
-    serieDao->addSerie(new Serie(1, "Mystic Falls", 2021, 3, 30, "Jane Doe, John Smith", "Alice, Bob", "ABC", 8));
-    serieDao->addSerie(new Serie(2, "Galactic Wars", 2020, 2, 24, "Emily Clark, George Doe", "Captain Rex, Zara", "Netflix", 7));
-    serieDao->addSerie(new Serie(3, "Time Travelers", 2019, 4, 40, "Sarah Brown, Michael White", "Liam, Emma", "HBO", 9));
-    serieDao->addSerie(new Serie(4, "Haunted Manor", 2022, 1, 10, "Anna Black, Chris Green", "Nina, Jack", "AMC", 6));
-    serieDao->addSerie(new Serie(5, "Cyber City", 2023, 2, 20, "David Miller, Laura Wilson", "Max, Lucy", "Amazon Prime", 8));
-    serieDao->addSerie(new Serie(6, "Royalty", 2021, 5, 50, "Olivia Jones, Robert Brown", "Queen Elizabeth, Prince Arthur", "BBC", 7));
-    serieDao->addSerie(new Serie(7, "Wild West", 2020, 3, 30, "William Taylor, Emma Stone", "Sheriff Bob, Annie", "Hulu", 8));
-    serieDao->addSerie(new Serie(8, "Future Tech", 2018, 4, 35, "Sophia Lee, Ryan Harris", "Dr. X, Agent Y", "CBS", 9));
-    serieDao->addSerie(new Serie(9, "Island Mystery", 2022, 1, 12, "Jessica Davis, Mark Robinson", "Hannah, Tom", "NBC", 6));
+            break;
+        }
+        
+        case DataBaseSelector::MARIADB:
+        {
+            // Serie controller constructor for MariaDB
+            this->mariaDBConnection = new MariaDBConnection();
+            this->serieDao = new MariaDBSerieDao(mariaDBConnection);
+            break;
+        }
+
+        default:
+        {
+            throw invalid_argument("Seletor de banco de dados inválido.");
+            break;
+        }
+    }
 }
 
 SerieController::~SerieController()
@@ -104,8 +120,7 @@ void SerieController::launchActionsEdit(int serieId)
 
 void SerieController::actionSeriesAddRegister()
 {
-    SerieController registro;
-    Serie *newSerie = registro.addRegister();
+    Serie *newSerie = addRegister();
 
     if (!(newSerie->getSerieName()).empty())
     {
@@ -125,7 +140,6 @@ void SerieController::actionSeriesAddRegister()
 void SerieController::actionSeriesRestoreRegister()
 {
     utils->clearScreen();
-    SerieController registro;
     Serie *serie;
     int serieId;
     utils->clearScreen();

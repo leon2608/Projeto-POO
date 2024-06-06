@@ -4,11 +4,12 @@
 #include <iomanip>
 
 #include "Controller.h"
+#include "../data/DataBaseSelector.h"
 #include "../utils/Menu.h"
 
 Controller::Controller()
 {
-    this->serieController = new SerieController();
+    this->serieController = new SerieController(DataBaseSelector::MEMORY);
     this->utils = new Utils();
 }
 
