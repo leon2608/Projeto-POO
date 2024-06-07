@@ -432,8 +432,15 @@ void SerieController::updateRating(int id)
     Serie *serie;
     serie = serieDao->getSerieById(id);
     int newRating;
-    cout << "Digite a nova avaliação: ";
-    cin >> newRating;
+    do
+    {
+        cout << "Digite a nova avaliação da série:" << endl;
+        cin >> newRating;
+        if (newRating < 0 || newRating > 10)
+        {
+            cout << "O número deve estar no intervalo de 0 a 10!" << endl;
+        }
+    } while (newRating < 0 || newRating > 10);
     serieDao->updateSerieRating(id, newRating);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
