@@ -315,8 +315,15 @@ Serie *SerieController::addRegister()
     cout << "Digite a rede da série:" << endl;
     getline(cin, network);
     utils->clearScreen();
+    do
+    {
     cout << "Digite a avaliação da série:" << endl;
     cin >> rating;
+    if (rating < 0 || rating > 10)
+    {
+        cout << "O número deve estar no intervalo de 0 a 10!" << endl;
+    }
+    } while (rating < 0 || rating > 10);
     utils->clearScreen();
 
     return new Serie(lastSerieId, serieName, releaseYear, season, episodeCount, mainActors, mainCharacters, network, rating);
