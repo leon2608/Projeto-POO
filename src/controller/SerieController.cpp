@@ -110,7 +110,7 @@ void SerieController::launchActionsEdit(int serieId)
         &SerieController::updateName,
         &SerieController::updateYear,
         &SerieController::updateSeason,
-        &SerieController::updateMainActors,
+        &SerieController::updateEpisodeCount,
         &SerieController::updateMainActors,
         &SerieController::updateMainCharacters,
         &SerieController::updateNetwork,
@@ -339,7 +339,8 @@ void SerieController::updateName(int id)
     serieDao->updateSerieName(id, newName);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
-    utils->pausar();
+    cout << "Pressione Enter para sair...";
+    getchar();
     utils->clearScreen();
 }
 
@@ -395,7 +396,8 @@ void SerieController::updateMainActors(int id)
     serieDao->updateSerieMainActors(id, newMainActors);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
-    utils->pausar();
+    cout << "Pressione Enter para sair...";
+    getchar();
     utils->clearScreen();
 }
 
@@ -409,7 +411,8 @@ void SerieController::updateMainCharacters(int id)
     serieDao->updateSerieMainCharacters(id, newMainCharacters);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
-    utils->pausar();
+    cout << "Pressione Enter para sair...";
+    getchar();
     utils->clearScreen();
 }
 
@@ -423,7 +426,8 @@ void SerieController::updateNetwork(int id)
     serieDao->updateSerieNetwork(id, newNetwork);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
-    utils->pausar();
+    cout << "Pressione Enter para sair...";
+    getchar();
     utils->clearScreen();
 }
 

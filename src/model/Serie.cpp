@@ -95,7 +95,7 @@ void Serie::setMainActors(string mainActors)
     this->mainActors = mainActors;
 }
 
-void Serie::setMainCharacters(string getMainCharacters)
+void Serie::setMainCharacters(string mainCharacters)
 {
     this->mainCharacters = mainCharacters;
 }
