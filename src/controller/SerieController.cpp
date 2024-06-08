@@ -76,7 +76,7 @@ void SerieController::launchActionsSeries(void)
         &SerieController::actionSeriesRestoreRegister,
         &SerieController::actionSeriesEditRegister,
         &SerieController::actionSeriesRemoveRegister};
-    launchActions("Menu Registro", menuItens, functions);
+    launchActions("Menu Séries", menuItens, functions);
 }
 void SerieController::launchActionsReports(void)
 {
@@ -147,9 +147,9 @@ void SerieController::actionSeriesRestoreRegister()
     cin >> serieId;
     cin.ignore();
     serie = serieDao->getSerieById(serieId);
-    utils->clearScreen();
     if (serie != nullptr)
     {
+        utils->clearScreen();
         cout << *serie;
     }
     else
@@ -172,10 +172,16 @@ void SerieController::actionSeriesEditRegister()
     cout << series << endl;
     cout << "Digite o ID da série que você deseja alterar:" << endl;
     cin >> serieId;
+    cin.ignore();
+    serie = serieDao->getSerieById(serieId);
     if (serie != nullptr)
     {
         utils->clearScreen();
         launchActionsEdit(serieId);
+        utils->clearScreen();
+    } else {
+        cout << "Nenhum registro foi encontrado com esse ID." << endl;
+        utils->pausar();
         utils->clearScreen();
     }
 }
@@ -197,7 +203,6 @@ void SerieController::actionSeriesRemoveRegister()
         cin >> confirm;
         cin.ignore();
 
-        utils->clearScreen();
         if (confirm != 1){
             cout << "Remoção de série cancelada." << endl;
         }else{
@@ -281,7 +286,6 @@ void SerieController::launchActionsInt(string title, vector<string> menuItens, v
 
 Serie *SerieController::addRegister()
 {
-    int static lastSerieId;
     string serieName;
     int releaseYear;
     int season;
@@ -329,7 +333,7 @@ Serie *SerieController::addRegister()
     cin.ignore();
     utils->clearScreen();
 
-    return new Serie(lastSerieId, serieName, releaseYear, season, episodeCount, mainActors, mainCharacters, network, rating);
+    return new Serie(-1, serieName, releaseYear, season, episodeCount, mainActors, mainCharacters, network, rating);
 }
 
 void SerieController::updateName(int id)
