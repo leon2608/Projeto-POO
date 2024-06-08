@@ -47,7 +47,6 @@ void Utils::clearScreen()
 void Utils::pausar()
 {
     cout << "Pressione Enter para continuar...";
-	cin.ignore();
     cin.get();
 }
 

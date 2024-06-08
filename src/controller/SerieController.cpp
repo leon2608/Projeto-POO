@@ -145,21 +145,20 @@ void SerieController::actionSeriesRestoreRegister()
     utils->clearScreen();
     cout << "Digite o ID da série que deseja encontrar:" << endl;
     cin >> serieId;
+    cin.ignore();
     serie = serieDao->getSerieById(serieId);
+    utils->clearScreen();
     if (serie != nullptr)
     {
-        utils->clearScreen();
         cout << *serie;
-        utils->pausar();
-        utils->clearScreen();
     }
     else
     {
-        utils->clearScreen();
         cout << "Nenhum registro foi encontrado com esse ID." << endl;
-        utils->pausar();
-        utils->clearScreen();
+        
     }
+    utils->pausar();
+    utils->clearScreen();
 }
 
 void SerieController::actionSeriesEditRegister()
@@ -196,17 +195,20 @@ void SerieController::actionSeriesRemoveRegister()
         cout << "Digite 1 se realmente deseje remover essa série " << serie->getSerieName() << " ?" << endl;
         int confirm;
         cin >> confirm;
-    if (confirm != 1){
-        cout << "Remoção de série cancelada." << endl;
-    }else{
+        cin.ignore();
+
         utils->clearScreen();
-        serieDao->removeSerie(serieId);
-        utils->clearScreen();
-        cout << "Remoção realizada" << endl;
-        utils->pausar();
-        utils->clearScreen();
+        if (confirm != 1){
+            cout << "Remoção de série cancelada." << endl;
+        }else{
+            serieDao->removeSerie(serieId);
+            cout << "Remoção realizada" << endl;
         }
+    } else {
+        cout << "Nenhum registro foi encontrado com esse ID." << endl;
     }
+    utils->pausar();
+    utils->clearScreen();
 }
 
 void SerieController::actionReportsOrderByTitle(void)
@@ -324,6 +326,7 @@ Serie *SerieController::addRegister()
         cout << "O número deve estar no intervalo de 0 a 10!" << endl;
     }
     } while (rating < 0 || rating > 10);
+    cin.ignore();
     utils->clearScreen();
 
     return new Serie(lastSerieId, serieName, releaseYear, season, episodeCount, mainActors, mainCharacters, network, rating);
@@ -339,8 +342,7 @@ void SerieController::updateName(int id)
     serieDao->updateSerieName(id, newName);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
-    cout << "Pressione Enter para sair...";
-    getchar();
+    utils->pausar();
     utils->clearScreen();
 }
 
@@ -351,6 +353,7 @@ void SerieController::updateYear(int id)
     int newYear;
     cout << "Digite o novo ano de lançamento: ";
     cin >> newYear;
+    cin.ignore();
     serieDao->updateSerieYear(id, newYear);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
@@ -365,6 +368,7 @@ void SerieController::updateSeason(int id)
     int newSeason;
     cout << "Digite a nova temporada: ";
     cin >> newSeason;
+    cin.ignore();
     serieDao->updateSerieSeason(id, newSeason);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
@@ -379,6 +383,7 @@ void SerieController::updateEpisodeCount(int id)
     int newEpisodeCount;
     cout << "Digite a nova contagem de episódios: ";
     cin >> newEpisodeCount;
+    cin.ignore();
     serieDao->updateSerieEpisodeCount(id, newEpisodeCount);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
@@ -396,8 +401,7 @@ void SerieController::updateMainActors(int id)
     serieDao->updateSerieMainActors(id, newMainActors);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
-    cout << "Pressione Enter para sair...";
-    getchar();
+    utils->pausar();
     utils->clearScreen();
 }
 
@@ -411,8 +415,7 @@ void SerieController::updateMainCharacters(int id)
     serieDao->updateSerieMainCharacters(id, newMainCharacters);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
-    cout << "Pressione Enter para sair...";
-    getchar();
+    utils->pausar();
     utils->clearScreen();
 }
 
@@ -426,8 +429,7 @@ void SerieController::updateNetwork(int id)
     serieDao->updateSerieNetwork(id, newNetwork);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;
-    cout << "Pressione Enter para sair...";
-    getchar();
+    utils->pausar();
     utils->clearScreen();
 }
 
@@ -445,6 +447,7 @@ void SerieController::updateRating(int id)
             cout << "O número deve estar no intervalo de 0 a 10!" << endl;
         }
     } while (newRating < 0 || newRating > 10);
+    cin.ignore();
     serieDao->updateSerieRating(id, newRating);
     cout << "Série id: " << id << " após a mudança!" << endl;
     cout << *serie;

@@ -30,7 +30,7 @@
 *.exe
 *.out
 *.app
-stvs_project
+*.bin
 
 # VSCode
 .vscode/
