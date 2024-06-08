@@ -1,12 +1,12 @@
 #include "SysInfo.h"
 
-const string SysInfo::author = "Grupo X";
-const string SysInfo::date = "2024, April";
-const string SysInfo::department = "Faculdade de Tecnologia - Limeira/SP";
+const string SysInfo::author = "Grupo 06";
+const string SysInfo::date = "2024";
+const string SysInfo::department = "Faculdade de Tecnologia (FT) - Limeira/SP";
 const string SysInfo::institution = "Universidade Estadual de Campinas (Unicamp)";
-const string SysInfo::systemName = "Catálogo de SériesC++";
-const string SysInfo::version = "0.01";
-const string SysInfo::helpFile = "SériesCatálogo.txt";
+const string SysInfo::systemName = "Sistema de Gerenciamento de Catálogo de Séries em C++";
+const string SysInfo::version = "1.0.0";
+const string SysInfo::helpFile = "STVSHelp.txt";
 
 const string &SysInfo::getAuthor()
 {
