@@ -157,15 +157,15 @@ ostream& operator<<(std::ostream& os, const Serie& serie)
 
 ostream& operator<<(ostream& os, const vector<Serie*>& series)
 {
-    int widthInternalId = 10;
-    int widthSerieName = 9;
-    int widthReleaseYear = 11;
-    int widthSeason = 6;
-    int widthEpisodeCount = 12;
-    int widthMainActors = 10;
-    int widthMainCharacters = 14; 
-    int widthNetwork = 7;
-    int widthRating = 6;
+    int widthInternalId = 2;
+    int widthSerieName = 4;
+    int widthReleaseYear = 3;
+    int widthSeason = 10;
+    int widthEpisodeCount = 9;
+    int widthMainActors = 6;
+    int widthMainCharacters = 11; 
+    int widthNetwork = 15;
+    int widthRating = 9;
     
     int i;
     size_t total = series.size();
@@ -206,15 +206,15 @@ ostream& operator<<(ostream& os, const vector<Serie*>& series)
         << "+" << string((widthMainCharacters+2), '-') << "+" << string((widthNetwork+2), '-') 
         << "+" << string((widthRating+2), '-') << "+"<< endl;
 
-    os  << left << "| " << setw(widthInternalId)    << "internalID"
-                << " | " << setw(widthSerieName)    << "serieName"
-                << " | " << setw(widthReleaseYear)  << "releaseYear"
-                << " | " << setw(widthSeason)       << "season"
-                << " | " << setw(widthEpisodeCount) << "episodeCount"
-                << " | " << setw(widthMainActors)   << "mainActors"
-                << " | " << setw(widthMainCharacters) << "mainCharacters"
-                << " | " << setw(widthNetwork)      << "network"
-                << " | " << setw(widthRating)       << "rating"
+    os  << left << "| " << setw(widthInternalId)      << "ID"
+                << " | " << setw(widthSerieName)      << "Nome"
+                << " | " << setw(widthReleaseYear)    << "Ano"
+                << " | " << setw(widthSeason)         << "Temporadas"
+                << " | " << setw(widthEpisodeCount)   << "Episodios"
+                << " | " << setw(widthMainActors)     << "Atores"
+                << " | " << setw(widthMainCharacters) << "Personagens"
+                << " | " << setw(widthNetwork)        << "Canal/Streaming"
+                << " | " << setw(widthRating)         << "Avaliacao"
                 << " |" << endl;
 
     os  << "+" << string((widthInternalId+2), '-') << "+" << string((widthSerieName+2), '-')
