@@ -1,0 +1,14 @@
+SERIES table:
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| internal_id     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| series_name     | varchar(255) | YES  |     | NULL    |                |
+| release_year    | int(11)      | YES  |     | NULL    |                |
+| season          | int(11)      | YES  |     | NULL    |                |
+| episode_count   | int(11)      | YES  |     | NULL    |                |
+| main_actors     | varchar(255) | YES  |     | NULL    |                |
+| main_characters | varchar(255) | YES  |     | NULL    |                |
+| network         | varchar(255) | YES  |     | NULL    |                |
+| rating          | int(11)      | YES  |     | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
