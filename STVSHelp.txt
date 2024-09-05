@@ -1,0 +1,25 @@
+Bem-vindo ao Sistema de Gerenciamento de Catálogo de Séries em C++
+
+Este software foi projetado para ajudá-lo a gerenciar seu catálogo de séries de maneira eficaz. Abaixo, você encontrará um guia para ajudá-lo a navegar por seus recursos: 
+
+1 - Séries:
+- Adicionar registro: Insira no sistema uma nova série ao catálogo do sistema.
+- Restaurar registro: Busque por uma série utilizando seu Id para consultá-la como está registrada sistema. 
+- Editar registro: Busque por uma série utilizando seu Id para poder acessá-la e editar suas informações cadastradas.
+- Remover registro: Busque por uma série utilizando seu Id para poder exclui-la do sistema de catálogo.
+
+2 - Relatórios:
+- Gere uma lista completa do catálogo de séries cadastradas ordenadas por Título, Serviço de Streaming, Ano de lançamento ou Nota de avaliação.
+
+3 - Ajuda:
+- Para qualquer assistência ou dúvida, consulte o manual do usuário ou entre em contato com nossa equipe de suporte. 
+
+4 - Créditos:
+- Acesse informações sobre a equipe de desenvolvedores desse sistema.
+ 
+0 - Saindo do Software:
+ - Saia do software com segurança selecionando a opção apropriada no menu.
+
+
+Obrigado por usar o software "Sistema de Gerenciamento de Catálogo de Séries em C++"!
+Fique à vontade para explorar suas funcionalidades e otimizar seu catálogo de séries.
